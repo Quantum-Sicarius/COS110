@@ -88,7 +88,7 @@ size_t* yearsMonthSize(int year) {
 
 
         //cout << "SUCCESS" << endl;
-        //cout << stampArray[0] << stampArray[1] << stampArray[2];
+        //cout << (*stampArray)[0] << (*stampArray)[1] << (*stampArray)[2] << endl;
   }
 
 size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &firstYear) {
@@ -105,7 +105,7 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
 
         reallocShort3d(dataPtr, 0, 1);
 
-        //cout << date << "\t" << mill << endl;
+        //cout << "FILE: " << date << "\t" << mill << endl;
 
         int *parseArr = new int[3];
         parseDateStamp(date,&parseArr);
@@ -123,9 +123,13 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
         // Year count
         int year_count = 1;
 
+        int line_count = 1;
+
         while (file >> date >> mill) {
                 // First date.
-                file >> date >> mill;
+                //file >> date >> mill;
+                //cout << "FILE: " << date << "\t" << mill << endl;
+                line_count++;
 
                 // Read array
                 int *parseArr = new int[3];
@@ -148,6 +152,8 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
 
 
         }
+
+        //cout << "LINES: " << line_count << endl;
 
         return year_count;
 }
@@ -172,6 +178,10 @@ short ** newShort2d(size_t numRow, size_t const *colSize) {
         return newshort;
 }
 void deleteShort2d(short **&ptr, size_t rowSize) {
-  //delete[] ptr;
+  for (size_t i = 0; i < rowSize; i++) {
+    cout << i <<endl;
+  }
+
+  //delete ptr;
 
 }
