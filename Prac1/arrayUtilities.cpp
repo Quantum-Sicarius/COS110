@@ -8,6 +8,8 @@ using namespace std;
 // Note: arrayUtilities.h will be overwritten by Fitchfork.
 
 int numDaysInMonth(int year, int month) {
+        month++;
+
         switch (month) {
         case 1:
                 return 31;
@@ -63,75 +65,31 @@ size_t* yearsMonthSize(int year) {
 
         return yearmonthsize;
 }
-/*
-   void parseDateStamp(std::string stampString, int *stampArray[3]) {
 
+  void parseDateStamp(std::string stampString, int *stampArray[3]) {
         string delimiter = "/";
 
         int *year = new int;
-   *year = stoi(stampString.substr(0, stampString.find(delimiter)));
+        *year = stoi(stampString.substr(0, stampString.find(delimiter)));
         stampString.erase(0, stampString.find(delimiter) + delimiter.length());
 
         int *month = new int;
-   *month = stoi(stampString.substr(0, stampString.find(delimiter)));
+        *month = stoi(stampString.substr(0, stampString.find(delimiter)));
         stampString.erase(0, stampString.find(delimiter) + delimiter.length());
 
         stampString = (stampString.substr(0, stampString.find(delimiter)));
 
         int *day = new int;
-   *day = stoi(stampString.substr(0, stampString.find("-")));
+        *day = stoi(stampString.substr(0, stampString.find("-")));
 
-   *stampArray[0] = *year;
-   *stampArray[1] = *month;
-   *stampArray[2] = *day;
-
-
-        cout << "SUCCESS" << endl;
-        cout << *stampArray[0] << *stampArray[1] << *stampArray[2];
-   }
-   //*/
-void parseDateStamp(std::string stampString, int *stampArray[3]){
-        std::string word = "";
-        std::istringstream buffer;
-
-        size_t i;
-        for(i = 0; stampString.at(i) != '/'; i++)
-                word.push_back(stampString.at(i));
+        (*stampArray)[0] = *year;
+        (*stampArray)[1] = *month;
+        (*stampArray)[2] = *day;
 
 
-        i++;
-        buffer.str(word);
-        buffer >> (*stampArray)[0];
-
-
-        buffer.clear();
-        word.clear();
-
-        for(i; stampString.at(i) != '/'; i++) {
-                word.push_back(stampString.at(i));
-        }
-
-
-        i++;
-
-        buffer.str(word);
-
-        buffer >> (*stampArray)[1];
-        buffer.clear();
-
-        word.clear();
-
-        for(i; stampString.length() > i; i++)
-                word.push_back(stampString.at(i));
-
-        i++;
-
-        buffer.str(word);
-        buffer >> (*stampArray)[2];
-        buffer.clear();
-        word.clear();
-
-}
+        //cout << "SUCCESS" << endl;
+        //cout << stampArray[0] << stampArray[1] << stampArray[2];
+  }
 
 size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &firstYear) {
 
@@ -141,13 +99,11 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
         string date;
         string mill;
 
-        int count = 0;
 
         // First date.
         file >> date >> mill;
 
-        count++;
-        reallocShort3d(dataPtr, 0, count);
+        reallocShort3d(dataPtr, 0, 1);
 
         //cout << date << "\t" << mill << endl;
 
@@ -171,8 +127,6 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
                 // First date.
                 file >> date >> mill;
 
-                count++;
-
                 // Read array
                 int *parseArr = new int[3];
                 parseDateStamp(date,&parseArr);
@@ -194,13 +148,11 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
 
 
         }
+
+        return year_count;
 }
 
 void reallocShort3d(short ***&ptr, size_t oldSize, size_t newSize) {
-        //cout << "REALLOCATION 3D" << endl;
-        //cout << "OLDSIZE: " << oldSize << endl;
-        //cout << "NEWSIZE: " << newSize << endl;
-
         short ***newptr = new short **[newSize];
 
         for(size_t i = 0; i < oldSize; i++) {
@@ -210,10 +162,8 @@ void reallocShort3d(short ***&ptr, size_t oldSize, size_t newSize) {
         delete [] ptr;
         ptr = newptr;
 }
+
 short ** newShort2d(size_t numRow, size_t const *colSize) {
-        //cout << "REALLOCATION" << endl;
-        //cout << "numRow: " << numRow << endl;
-        //cout << "colSize: " << colSize << endl;
 
         short **newshort = new short *[numRow];
         for (size_t i = 0; i < *colSize; i++) {
@@ -222,4 +172,6 @@ short ** newShort2d(size_t numRow, size_t const *colSize) {
         return newshort;
 }
 void deleteShort2d(short **&ptr, size_t rowSize) {
+  //delete[] ptr;
+
 }

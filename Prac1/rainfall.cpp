@@ -22,7 +22,7 @@ int main(){
 																cout << "Enter the date in the form YYYY/MM/DD to display the rainfall on that day: ";
 																cin >> input;
 																if(input.compare("exit") == 0) {
-																								return 0;
+																								//return 0;
 
 																								loop = false;
 																}else{
@@ -45,7 +45,7 @@ int main(){
 																																valid = false;
 																								}
 
-																								if(day < 0 || day > numDaysInMonth(year, month) ) {
+																								if(day < 0 || day >= numDaysInMonth(year, month) ) {
 																																valid = false;
 																								}
 
@@ -64,9 +64,10 @@ int main(){
 								}
 
 								for(int yearOffset = 0; yearOffset < numYears; yearOffset++) {
-
 																deleteShort2d(data[yearOffset], 12);
 								}
 
 								delete stamp;
+
+								return 0;
 }
