@@ -138,7 +138,7 @@ size_t parseDataFile(std::string const & filename, short ***&dataPtr, int &first
 
                         //cout << "NEW MONTH!" << endl;
                         // New 2d array
-                        size_t *days = yearsMonthSize(parseArr[0]-firstYear);
+                        size_t *days = yearsMonthSize(parseArr[0]);
                         dataPtr[parseArr[0]-firstYear] = newShort2d(12,days);
                 }
 
