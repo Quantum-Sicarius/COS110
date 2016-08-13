@@ -60,7 +60,7 @@ size_t* yearsMonthSize(int year) {
         size_t *yearmonthsize = new size_t[12];
 
         for (size_t i = 0; i < 12; i++) {
-                yearmonthsize[i] = numDaysInMonth(year, i + 1);
+                yearmonthsize[i] = numDaysInMonth(year, i);
         }
 
         return yearmonthsize;
@@ -172,16 +172,18 @@ void reallocShort3d(short ***&ptr, size_t oldSize, size_t newSize) {
 short ** newShort2d(size_t numRow, size_t const *colSize) {
 
         short **newshort = new short *[numRow];
-        for (size_t i = 0; i < *colSize; i++) {
-                newshort[i] = new short[*colSize];
+        for (size_t i = 0; i < numRow; i++) {
+                //cout << colSize[i] << endl;
+                newshort[i] = new short[colSize[i]];
         }
         return newshort;
 }
 void deleteShort2d(short **&ptr, size_t rowSize) {
   for (size_t i = 0; i < rowSize; i++) {
-    cout << i <<endl;
+    //cout << i <<endl;
+    ptr[i] = 0;
   }
 
-  //delete ptr;
+  delete[] ptr;
 
 }
