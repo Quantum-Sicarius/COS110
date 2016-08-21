@@ -70,13 +70,39 @@ void testAttributes(Adventurer *ad) {
         // Pick up item.
         string *item = getRandomItem();
 
-        cout << item[0] << "\t" << item[1] << endl;
+        //cout << item[0] << "\t" << item[1] << endl;
 
         cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0] << " of weight: " << item[1]
              << "\tSuccess? " << ad->pickUpItem(item[0],stod(item[1])) << endl;
 
-        // Get item.
-        //cout << "Adventurer: " << ad->getName() << " has item: " << ad->getItem(0)[0] << " in index 0" << end;
+        // Test items.
+        cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+
+        if (ad->getCurrentNumberOfItems() > 0) {
+                // Get item.
+                cout << "Adventurer: " << ad->getName() << " has items" << endl;
+
+                for (size_t i = 0; i < ad->getCurrentNumberOfItems(); i++) {
+                        cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1]  << endl;
+                }
+
+                string *item = getRandomItem();
+
+                cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0] << " of weight: " << item[1]
+                     << "\tSuccess? " << ad->pickUpItem(item[0],stod(item[1])) << endl;
+
+                // Test items.
+                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+
+                cout << "Drop Item: " << ad->dropItem(0) << endl;
+                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+
+                //cout << "Drop item: " << item[0] << ad->dropItem(item[0]) << endl;
+
+                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+
+        }
+
 }
 
 void printAttributes(Adventurer *ad) {
