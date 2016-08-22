@@ -1,39 +1,56 @@
 #include "Adventurer.h"
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
+
+
 //Implement or define your class here
 Adventurer::Adventurer() {
+        Adventurer::numberOfAdventurers++;
         this->items = 0;
         this->currentNumberOfItems = 0;
         this->currentCarryWeight = 0.0;
+        this->maxCarryWeight = 0;
+        this->maxNumberOfItems = 0;
+        this->health = 0;
+        this->name = "";
 } //default constructor
 
 Adventurer::Adventurer(const Adventurer &a) {
-        Adventurer* copy = new Adventurer;
-        copy->setName(a.getName());
-        copy->setHealth(a.getHealth());
-        copy->setMaxCarryWeight(a.getMaxCarryWeight());
-        copy->setMaxNumberOfItems(a.getMaxNumberOfItems());
-        copy->setCurrentCarryWeight(a.getCurrentCarryWeight());
-        copy->setCurrentNumberOfItems(a.getCurrentNumberOfItems());
+        Adventurer::numberOfAdventurers++;
 
-        copy->items = a.items;
+        this->items = 0;
+
+        this->setName(a.getName());
+        this->setHealth(a.getHealth());
+        this->setMaxCarryWeight(a.getMaxCarryWeight());
+        this->setMaxNumberOfItems(a.getMaxNumberOfItems());
+        this->setCurrentCarryWeight(a.getCurrentCarryWeight());
+        this->setCurrentNumberOfItems(a.getCurrentNumberOfItems());
+        //this->items = a.items;
+        // Copy all items
+        cout << "Copying items" << endl;
+        memcpy(this->items, *a.items, a.getMaxNumberOfItems() * sizeof(string));
+
+//
 }  //copy constructor
-Adventurer::~Adventurer() {
-        //delete &health;
-        //delete &maxCarryWeight;
-        //delete &maxNumberOfItems;
-        //delete &currentCarryWeight;
-        //delete &currentNumberOfItems;
-        //delete &name;
 
-        for (size_t i = 0; i < this->getCurrentNumberOfItems(); i++) {
-                delete [] this->items[i];
+Adventurer::~Adventurer() {
+        cout << "DESTRUCT" << endl;
+        for (int i = 0; i < this->getCurrentNumberOfItems(); i++) {
+                delete[] this->items[i];
+                //delete this->items[i][1];
         }
+
+        this->items = 0;
+
+        Adventurer::numberOfAdventurers--;
 }
+
 
 void resizeArr(int oldSize, int newSize, string*** &arr) {
 
-        //cout << "Redo Array" << endl;
+        cout << "Redo Array" << endl;
 
         string ***newArr = new string**[newSize];
 
@@ -47,6 +64,8 @@ void resizeArr(int oldSize, int newSize, string*** &arr) {
         delete [] arr;
         //cout << "REASSIGN" << endl;
         arr = newArr;
+
+        cout << "redo done" << endl;
 }
 
 bool deleteItem(int index, int size, string*** &arr) {
@@ -68,6 +87,8 @@ bool deleteItem(int index, int size, string*** &arr) {
 }
 
 
+
+
 bool Adventurer::pickUpItem(string it, double weight) {
         // Check if the player can carry more items.
         if ((currentCarryWeight + weight) > maxCarryWeight || (currentNumberOfItems + 1) > (maxNumberOfItems)) {
@@ -75,37 +96,17 @@ bool Adventurer::pickUpItem(string it, double weight) {
         } else {
                 // Resize the Array.
 
-                resizeArr(this->getCurrentNumberOfItems(), (this->getCurrentNumberOfItems() + 1), (this->items));
+                //resizeArr(this->getCurrentNumberOfItems(), (this->getCurrentNumberOfItems() + 1), (this->items));
                 this->setCurrentNumberOfItems(this->getCurrentNumberOfItems() + 1);
 
-                //cout << "SET ITEMS" << endl;
-                //cout << this->getCurrentNumberOfItems() << endl;
-                //cout << (this->items)[0] << endl;
 
-                //cout << "ASSIGNED1" << endl;
-                //cout << *(this->items) << endl;
-                //cout << **(this->items) << endl;
-                //cout << ***(this->items) << endl;
-                //*(this->items)[this->getCurrentNumberOfItems() - 1] = new string[2];
-                //cout << "ASSIGENd2" << endl;
                 (this->items)[this->getCurrentNumberOfItems() - 1] = new string*[2];
-                //cout << (this->items)[0] << endl;
 
-
-                //cout << "ASSIGNED2" << endl;
-                //cout << (this->items[0][0]);
-                //cout << "TEST" << endl;
                 (this->items)[this->getCurrentNumberOfItems() - 1][0] = new string(it);
-                //(this->items)[this->getCurrentNumberOfItems() - 1][0] = &it;
 
                 string str_weight = to_string(weight);
-                //cout << str_weight << endl;
-                //std::strcpy(str_weight,to_string(weight));
+
                 (this->items)[this->getCurrentNumberOfItems() - 1][1] = new string(str_weight);
-                //(this->items)[this->getCurrentNumberOfItems() - 1][1] = &str_weight;
-
-
-
                 return true;
         }
 }
@@ -148,6 +149,8 @@ double Adventurer::getCurrentCarryWeight() const {
         return this->currentCarryWeight;
 }
 void Adventurer::setMaxNumberOfItems(int n) {
+        resizeArr(this->maxNumberOfItems,n,this->items);
+
         this->maxNumberOfItems = n;
 }
 int Adventurer::getMaxNumberOfItems() const {
@@ -160,8 +163,7 @@ int Adventurer::getCurrentNumberOfItems() const {
         return this->currentNumberOfItems;
 }
 int Adventurer::getNumberOfAdventurers() const {
-        // TODO
-        return 0;
+        return numberOfAdventurers;
 }
 void Adventurer::setHealth(double h) {
         this->health = h;
@@ -175,4 +177,19 @@ string** Adventurer::getItem(int index) const {
 
 // Copy.
 Adventurer& Adventurer::operator = (const Adventurer& a) {
+
+        cout << "CALLED operator" << endl;
+
+        Adventurer::numberOfAdventurers++;
+
+        this->items = 0;
+
+        this->setName(a.getName());
+        this->setHealth(a.getHealth());
+        this->setMaxCarryWeight(a.getMaxCarryWeight());
+        this->setMaxNumberOfItems(a.getMaxNumberOfItems());
+        this->setCurrentCarryWeight(a.getCurrentCarryWeight());
+        this->setCurrentNumberOfItems(a.getCurrentNumberOfItems());
+
+        memcpy(this->items, *a.items, a.getMaxNumberOfItems() * sizeof(string));
 }

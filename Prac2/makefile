@@ -1,9 +1,9 @@
-main.out: Adventurer.o  main.cpp
-	g++ --std=c++14 Adventurer.o  main.cpp -o main.out
+main: Adventurer.o  main.cpp
+	g++ --std=c++14 -static Adventurer.o  main.cpp -o main
 
 
 Adventurer.o: Adventurer.cpp
 	g++ --std=c++14 -c Adventurer.cpp
 
-run: main.out
-	./main.out
+run: main
+	./main

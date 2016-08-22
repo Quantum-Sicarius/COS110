@@ -114,15 +114,27 @@ void printAttributes(Adventurer *ad) {
         cout << "Adventurer: " << ad->getName() << "\tmax number of items: " << ad->getMaxNumberOfItems() << endl;
 
         cout << "Adventurer: " << ad->getName() << "\thealth: " << ad->getHealth() << endl;
+
+        cout << "There are currently: " << ad->getNumberOfAdventurers() << " adventurers." << endl;
 }
+
+void printItems(Adventurer *ad) {
+        if (ad->getCurrentNumberOfItems() > 0) {
+                cout << "Adventurer: " << ad->getName() << " has " << ad->getCurrentNumberOfItems() << " items: " << endl;
+
+                for (int i = 0; i < ad->getCurrentNumberOfItems(); i++) {
+                        cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1]  << endl;
+                }
+        }
+}
+
+int Adventurer::numberOfAdventurers = 0;
 
 int main() {
         //add code here to test your class
         cout << "Start..." << endl;
 
         srand (time(NULL));
-
-        //cout << getRandomItem() << endl;
 
         // Create new Adventurer.
         Adventurer *ad1 = new Adventurer();
@@ -131,14 +143,24 @@ int main() {
         Adventurer *ad2 = new Adventurer();
         testAttributes(ad2);
 
-        Adventurer *ad3 = ad2;
+        // Test copy
+
+        cout << "Testing copy constructor" << endl;
+
+        Adventurer *ad3 = new Adventurer(*ad2);
         printAttributes(ad3);
+        printItems(ad3);
+
+        Adventurer *ad4 = ad3;
+        printAttributes(ad4);
+        printItems(ad4);
 
         cout << "Deleting AD2" << endl;
         delete ad2;
 
         cout << "Testing AD3" << endl;
         printAttributes(ad3);
+        printItems(ad3);
 
         return 0;
 }
