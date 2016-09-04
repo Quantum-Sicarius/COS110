@@ -30,22 +30,24 @@ void redoArray(Book** &books, int oldS, int newS, bool enlarge) {
         books = newBooks;
 }
 
-Library::Library(Library &l) {
+Library::Library(const Library &l) {
         this->name = l.name;
         this->librarySize = l.librarySize;
         this->numBooks = l.numBooks;
 
-        this->books = new Book*[librarySize];
+        // DEBUG.
+        //cout << this->librarySize << endl;
+        //cout << this->numBooks << endl;
 
-        delete [] this->books;
+        //delete [] this->books;
         this->books = new Book*[this->librarySize];
 
         // Copy all books.
-        for (int i = 0; i < this->numBooks; i++) {
+        for (int i = 0; i < this->librarySize; i++) {
                 //cout << "BOOK: " << i << endl;
 
                 if (l.books[i]) {
-                        this->books[i] = l.books[i];
+                        this->books[i] = new Book((l.books[i])->getTitle(), (l.books[i])->getAuthor(), (l.books[i])->getISBN());
                 } else {
                         this->books[i] = 0;
                 }
@@ -55,24 +57,33 @@ Library::Library(Library &l) {
 
 Library::~Library() {
         for (int i = 0; i < this->numBooks; i++) {
+                //delete this->books[i];
                 this->books[i] = 0;
         }
 
         delete [] this->books;
 }
 
-Library& Library::operator+=(Book &b) {
+string Library::getName() {
+        return this->name;
+}
+
+void Library::setName(string s) {
+        this->name = s;
+}
+
+Library Library::operator+=(Book* b) {
         if (this->isFull()) {
                 cout << "Library is full!" << endl;
                 return *this;
         }
-        this->books[this->numBooks] = &b;
+        this->books[this->numBooks] = b;
         this->numBooks++;
         return *this;
 }
-Library& Library::operator-=(Book &b) {
+Library Library::operator-=(Book* b) {
         for (int i = 0; i < this->numBooks; i++) {
-                if (this->books[i] == &b) {
+                if (this->books[i] == b) {
                         this->books[i] = 0;
                         this->numBooks--;
                         return *this;
@@ -93,7 +104,7 @@ Library& Library::operator=(const Library &l) {
         this->books = new Book*[this->librarySize];
 
         // Copy all books.
-        for (int i = 0; i < this->numBooks; i++) {
+        for (int i = 0; i < this->librarySize; i++) {
                 //cout << "BOOK: " << i << endl;
 
                 if (l.books[i]) {
@@ -123,14 +134,17 @@ Library& Library::operator--() {
 }
 
 Book* Library::getBook(string s) {
-        for (int i = 0; i < this->numBooks; i++) {
-                Book* currentBook = this->books[i];
-                if (currentBook->getTitle() == s) {
-                        return currentBook;
+        for (int i = 0; i < this->librarySize; i++) {
+                if (this->books[i]) {
+                        Book* currentBook = (this->books[i]);
+                        if (currentBook->getTitle() == s) {
+                                return currentBook;
+                        }
                 }
+
         }
 
-        return 0;
+        return NULL;
 }
 bool Library::isFull() {
         if (this->numBooks == this->librarySize) {
@@ -140,10 +154,10 @@ bool Library::isFull() {
         return false;
 }
 void Library::print() {
-        cout << this->name << endl;
+        cout << "Inventory of " << this->name << ":"<< endl;
         cout << "===================================" << endl;
         if (this->numBooks == 0) {
-                cout << "[EMPTY]" << endl;
+                cout << "EMPTY" << endl;
         } else {
                 for (int i = 0; i < this->librarySize; i++) {
                         if (this->books[i]) {
@@ -155,5 +169,5 @@ void Library::print() {
                 }
         }
 
-        cout << "===================================" << endl;
+        cout << "==================================" << endl;
 }

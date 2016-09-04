@@ -14,6 +14,7 @@ private:
 string title, author, ISBN, genre;
 
 public:
+Book() {}
 Book(string t, string a, string i): title(t), author(a), ISBN(i) {}
 
 string getTitle();
