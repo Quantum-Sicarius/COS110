@@ -18,7 +18,7 @@ public:
 
   Library& operator+=(Book &b);
   Library& operator-=(Book &b);
-  Library& operator=(Library l);
+  Library& operator=(const Library &l);
   Library& operator++(int);
   Library& operator--();
 

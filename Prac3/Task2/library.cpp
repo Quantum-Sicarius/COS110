@@ -1,10 +1,29 @@
 #include "library.h"
 
-void redoArray(Book** &books, int oldS, int newS) {
+void redoArray(Book** &books, int oldS, int newS, bool enlarge) {
+
+        // DEBUG
+        //cout << "OLDSIZE: " << oldS << " NEW SIZE:" << newS << endl;
+
         Book** newBooks = new Book*[newS];
 
-        for (int i = 0; i < oldS; i++) {
-                newBooks[i] = books[i];
+        if (enlarge) {
+                for (int i = 0; i < oldS; i++) {
+                        if (books[i]) {
+                                newBooks[i] = books[i];
+                        } else {
+                                newBooks[i] = 0;
+                        }
+                }
+        } else {
+                for (int i = 0; i < newS; i++) {
+                        //cout << "BOOK: " << i << endl;
+                        if (books[i]) {
+                                newBooks[i] = books[i];
+                        } else {
+                                newBooks[i] = 0;
+                        }
+                }
         }
 
         delete [] books;
@@ -18,13 +37,35 @@ Library::Library(Library &l) {
 
         this->books = new Book*[librarySize];
 
+        delete [] this->books;
+        this->books = new Book*[this->librarySize];
+
         // Copy all books.
         for (int i = 0; i < this->numBooks; i++) {
-                this->books[i] = l.books[i];
+                //cout << "BOOK: " << i << endl;
+
+                if (l.books[i]) {
+                        this->books[i] = l.books[i];
+                } else {
+                        this->books[i] = 0;
+                }
+
         }
 }
 
+Library::~Library() {
+        for (int i = 0; i < this->numBooks; i++) {
+                this->books[i] = 0;
+        }
+
+        delete [] this->books;
+}
+
 Library& Library::operator+=(Book &b) {
+        if (this->isFull()) {
+                cout << "Library is full!" << endl;
+                return *this;
+        }
         this->books[this->numBooks] = &b;
         this->numBooks++;
         return *this;
@@ -40,18 +81,44 @@ Library& Library::operator-=(Book &b) {
 
         return *this;
 }
-Library& Library::operator=(Library l) {
+Library& Library::operator=(const Library &l) {
+        this->name = l.name;
+        this->librarySize = l.librarySize;
+        this->numBooks = l.numBooks;
+
+        // DEBUG.
+        //cout << this->librarySize << endl;
+
+        delete [] this->books;
+        this->books = new Book*[this->librarySize];
+
+        // Copy all books.
+        for (int i = 0; i < this->numBooks; i++) {
+                //cout << "BOOK: " << i << endl;
+
+                if (l.books[i]) {
+                        this->books[i] = l.books[i];
+                } else {
+                        this->books[i] = 0;
+                }
+
+        }
         return *this;
 }
 Library& Library::operator++(int) {
-        this->librarySize = this->librarySize + 1;
-        redoArray(this->books, (this->librarySize - 1), this->librarySize);
+        // DEBUG
+        //cout << "OPERATOR++ CALLED" << endl;
+        this->librarySize++;
+        redoArray(this->books, (this->librarySize) - 1, this->librarySize, true);
         return *this;
 }
 Library& Library::operator--() {
         this->librarySize--;
+        if (this->numBooks > this->librarySize) {
+                this->numBooks = this->librarySize;
+        }
         // Check on this.
-        redoArray(this->books, (this->librarySize + 1), this->librarySize);
+        redoArray(this->books, (this->librarySize) + 1, this->librarySize, false);
         return *this;
 }
 
@@ -79,7 +146,7 @@ void Library::print() {
                 cout << "[EMPTY]" << endl;
         } else {
                 for (int i = 0; i < this->librarySize; i++) {
-                        if (this->books[i] != 0) {
+                        if (this->books[i]) {
                                 cout << (i + 1) << ". " << *(this->books[i]) << endl;
                         } else {
                                 cout << (i + 1) << ". " << "[EMPTY SPACE]" << endl;
