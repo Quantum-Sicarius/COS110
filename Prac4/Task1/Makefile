@@ -1,8 +1,8 @@
-main: titleCase.o backwards.o filter.o main.cpp
-	g++ --std=c++14 -static filter.o titleCase.o backwards.o main.cpp -o main
+main.out: titleCase.o backwards.o main.cpp
+	g++ --std=c++14 -static titleCase.o backwards.o main.cpp -o main.out
 
-filter.o: filter.cpp
-	g++ --std=c++14 -c filter.cpp
+#filter.o: filter.h
+#	g++ --std=c++14 -c filter.h
 
 titleCase.o: titleCase.cpp
 	g++ --std=c++14 -c titleCase.cpp
@@ -10,8 +10,8 @@ titleCase.o: titleCase.cpp
 backwards.o: backwards.cpp
 	g++ --std=c++14 -c backwards.cpp
 
-run: main
-	./main
+run: main.out
+	./main.out
 
 clean:
 	rm *.o

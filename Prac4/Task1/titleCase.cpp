@@ -10,6 +10,8 @@ std::string trim(std::string& str)
 
 std::string titleCase::print(std::string s) {
 
+        std::string special = "!@#$%^&*()_+-={}|:">?<,.\/;'[]\~`';
+
         // Trim trailing spaces.
         s = trim(s);
 

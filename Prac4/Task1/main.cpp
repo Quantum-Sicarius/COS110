@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
         cout << "Testing correction of:" << ignore << endl;
         cout << "Result: " << t.print(ignore) << endl;
 
-        s = "hello what is thou name?";
+        s = " ###   hello what is thou name?";
         cout << "Testing correction of:" << s << endl;
         cout << "Result: " << t.print(s) << endl;
 
