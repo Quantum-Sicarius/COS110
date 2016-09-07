@@ -18,7 +18,8 @@ staff.o: staff.cpp staff.h
 run: main
 	./main
 
-
-
 clean:
-	rm *.o main
+	rm *.o main rm *.tar.gz
+
+compress:
+	./compress.sh

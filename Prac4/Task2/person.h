@@ -1,6 +1,8 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+#include <string>
+
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
@@ -9,39 +11,41 @@ class Person
 {
 public:
 	enum Gender{male, female};
+	std::string getName();
+	//Gender getGender();
 	/**
 	* set this->numColleagues to 0
 	* set this->colleagues to 0
 	* set this->empNo to static member empNoCounter++
 	*/
 	Person(std::string name_, Gender gender_);
-	
-	
+
+
 	/**
 	* Prevents memory-leaking
 	* See main-file to deduce the workings, HINT: Persons are deleted in main
 	*/
 	~Person();
-	
+
 	/**
 	* @return the number of current colleagues, i.e this->numColleagues
 	*/
 	size_t getNumColleagues();
-	
+
 	/**
 	* Pure Virtual function with implementation
 	* NOTE!! the implementation
 	* @return the name of the person, i.e this->name
 	*/
 	virtual std::string greet() = 0;
-	
-	
+
+
 	/**Pure Virtual function that greets another person (has no implementation)*/
 	virtual std::string greet(Person *other) = 0;
 	/**Pure Virtual function that reply's to a greet (has no implementation)*/
 	virtual std::string reply(Person *other) = 0;
-	
-	
+
+
 	/** Pure Virtual function with implementation
 	* NOTE!! the implementation
 	* @return a string "logging in with employee number <Employee number>"
@@ -59,17 +63,17 @@ public:
 protected:
 	/**Grow the dynamic array this->colleagues by one*/
 	void growAcquaintances();
-	
+
 	/**
 	* Test the value of parameter other, to all elements in this->colleagues
 	* @param other is a pointer to the person that is to be tested
 	* @return true if parameter other was found, else false
 	*/
 	bool recognize(Person * other);
-	
+
 	/**@return this->gender*/
 	Gender getGender();
-	
+
 	/**number of colleague elements in dynamic this->array colleagues*/
 	size_t numColleagues;
 	/**dynamic array of type Person pointer*/
@@ -80,8 +84,8 @@ private:
 
 	/**sttic counter that should be initiated to the value of 12345678*/
 	static size_t empNoCounter;
-	
-	
+
+
 	std::string name;
 	Gender gender;
 	/**Employee number*/

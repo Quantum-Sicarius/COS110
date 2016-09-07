@@ -5,7 +5,7 @@
 
 class filter {
 public:
-  virtual std::string print(std::string s) {return 0;}
+  virtual std::string print(std::string s) = 0;
 };
 
 #endif

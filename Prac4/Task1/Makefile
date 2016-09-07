@@ -14,9 +14,7 @@ run: main.out
 	./main.out
 
 clean:
-	rm *.o
-	rm main
-	rm *.tar.gz
+	rm *.o main *.tar.gz
 
 compress:
 	./compress.sh
