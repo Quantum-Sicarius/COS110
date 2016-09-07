@@ -27,3 +27,7 @@
 *.exe
 *.out
 *.app
+
+# Compressed
+*.tar
+*.tar.gz
