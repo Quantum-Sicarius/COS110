@@ -15,7 +15,7 @@ Person::Person(std::string name_, Person::Gender gender_) {
 }
 
 Person::~Person() {
-
+        delete [] this->colleagues;
 }
 
 size_t Person::getNumColleagues() {

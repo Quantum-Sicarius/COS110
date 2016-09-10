@@ -4,7 +4,7 @@ main: $(ofiles)
 	g++ -o main $(ofiles)
 
 main-prac4-task2.o: main-prac4-task2.cpp
-	g++ -c main-prac4-task2.cpp
+	g++ -c -static main-prac4-task2.cpp
 
 person.o: person.cpp person.h
 	g++ -c person.cpp
@@ -19,7 +19,7 @@ run: main
 	./main
 
 clean:
-	rm *.o main rm *.tar.gz
+	rm *.o main *.tar.gz
 
 compress:
 	./compress.sh
