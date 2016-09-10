@@ -1,18 +1,20 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+#include <string>
+
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
 
 class Person
 {
 public:
 	enum Gender{male, female};
-	
-	
+
+
 	Person(std::string name_, Gender gender_);
 	~Person();
-	
-	
+
+
 	size_t getNumColleagues();
 	Gender getGender();
 	virtual std::string getTitle() = 0;
@@ -29,19 +31,18 @@ public:
 protected:
 	void growAcquaintances();
 	bool recognize(Person *);
-	
+
 	size_t numColleagues;
 	Person ** colleagues;
 
 
 private:
 	static size_t empNoCounter;
-	
+
 	std::string name;
 	Gender gender;
 	size_t empNo;
 };
-
 
 
 #endif
