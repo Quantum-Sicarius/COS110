@@ -52,6 +52,7 @@ int main() {
         Spell s9("drink", 0, 0);
         Spell s10("sleep", 0, 0);
         Spell s11("meh", 0, 0);
+        Spell s13("lol", 1,1);
 
         cout << "Testing spell operators: " << endl;
         printSpell(s1);
@@ -124,6 +125,14 @@ int main() {
         wiz + s9;
         wiz + s10;
         wiz + s11;
+        wiz + s13;
+
+        cout << "Test compare < operator: should return 0" << endl;
+        cout << "Result: ";
+        cout << (wiz < wiz2) << endl << endl;
+        cout << "Test compare < operator: should return 1" << endl;
+        cout << "Result: ";
+        cout << (wiz > wiz2) << endl << endl;
 
         printWizard(wiz);
         h.dropWizardSpells(wiz);

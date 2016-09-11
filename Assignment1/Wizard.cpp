@@ -40,12 +40,13 @@ void Wizard::addSpell(const Spell& s) {
         // Check if we can fit one more spell.
         if ((this->numberOfSpells + 1) > this->maxNumberOfSpells) {
                 // Resize array.
+                int previousSize = this->maxNumberOfSpells;
                 this->maxNumberOfSpells++;
                 Spell* newspells = new Spell[this->maxNumberOfSpells];
 
                 for (int i = 0; i < this->maxNumberOfSpells; i++) {
                         // Check for not null. This means we are not at the end if everything works as planned.
-                        if (i != this->maxNumberOfSpells) {
+                        if (i < previousSize) {
                                 newspells[i] = this->spells[i];
                         } else {
                                 // Add the brand new spell.
@@ -104,14 +105,52 @@ Spell& Wizard::getSpell(int index) const {
         return this->spells[index];
 }
 
+// Should compare only the same spells.
 bool Wizard::operator<(const Wizard& rhs) const {
-        if (this->getNumberOfSpells() < rhs.getNumberOfSpells()) {
+        int thisWizard = 0;
+        int otherWizard = 0;
+
+        // This wizard loop.
+        for (int i = 0; i < this->maxNumberOfSpells; i++) {
+
+                // Other wizard loop.
+                for (int j = 0; j < rhs.getMaxNumberOfSpells(); j++) {
+                        if (this->getSpell(i).getName() == rhs.getSpell(j).getName()) {
+                                if (this->getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
+                                        otherWizard++;
+                                } else {
+                                        thisWizard++;
+                                }
+                        }
+                }
+        }
+
+        if (thisWizard < otherWizard) {
                 return true;
         }
         return false;
 }
+// Should compare only the same spells.
 bool Wizard::operator>(const Wizard& lhs) const {
-        if (this->getNumberOfSpells() > lhs.getNumberOfSpells()) {
+        int thisWizard = 0;
+        int otherWizard = 0;
+
+        // This wizard loop.
+        for (int i = 0; i < this->maxNumberOfSpells; i++) {
+
+                // Other wizard loop.
+                for (int j = 0; j < lhs.getMaxNumberOfSpells(); j++) {
+                        if (this->getSpell(i).getName() == lhs.getSpell(j).getName()) {
+                                if (this->getSpell(i).getSkillLevel() < lhs.getSpell(j).getSkillLevel()) {
+                                        otherWizard++;
+                                } else {
+                                        thisWizard++;
+                                }
+                        }
+                }
+        }
+
+        if (thisWizard > otherWizard) {
                 return true;
         }
         return false;
