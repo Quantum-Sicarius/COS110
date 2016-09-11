@@ -18,6 +18,7 @@ Wizard::Wizard(const Wizard &w) {
         this->age = w.getAge();
         this->numberOfSpells = w.getNumberOfSpells();
         this->maxNumberOfSpells = w.getMaxNumberOfSpells();
+        this->numberOfLossedSpells = w.getNumberOfLossedSpells();
 
         // We use maxNumberOfSpells because we initialize empty spells with the name "".
         this->spells = new Spell[this->maxNumberOfSpells];
@@ -37,8 +38,8 @@ void Wizard::addSpell(const Spell& s) {
         // Check if we can fit one more spell.
         if ((this->numberOfSpells + 1) > this->maxNumberOfSpells) {
                 // Resize array.
-                Spell* newspells = new Spell[this->maxNumberOfSpells + 1];
                 this->maxNumberOfSpells++;
+                Spell* newspells = new Spell[this->maxNumberOfSpells];
 
                 for (int i = 0; i < this->maxNumberOfSpells; i++) {
                         // Check for not null. This means we are not at the end if everything works as planned.
@@ -99,4 +100,27 @@ int Wizard::getNumberOfLossedSpells() const {
 }
 Spell& Wizard::getSpell(int index) const {
         return this->spells[index];
+}
+
+bool Wizard::operator<(const Wizard& rhs) const {
+        if (this->getNumberOfSpells() < rhs.getNumberOfSpells()) {
+                return true;
+        }
+        return false;
+}
+bool Wizard::operator>(const Wizard& lhs) const {
+        if (this->getNumberOfSpells() > lhs.getNumberOfSpells()) {
+                return true;
+        }
+        return false;
+}
+
+Wizard Wizard::operator+(const Spell& s) {
+        this->addSpell(s);
+        return *this;
+}
+
+Wizard Wizard::operator-(const string s) {
+        this->deleteSpell(s);
+        return *this;
 }

@@ -30,6 +30,11 @@ public:
     int getAge() const;
     int getNumberOfLossedSpells() const;
     Spell& getSpell(int index) const;
+
+    bool operator<(const Wizard& rhs) const;
+    bool operator>(const Wizard& lhs) const;
+    Wizard operator+(const Spell& s);
+    Wizard operator-(const string s);
 };
 
 #endif	/* WIZARD_H */

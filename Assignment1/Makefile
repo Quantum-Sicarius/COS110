@@ -1,28 +1,19 @@
-ofiles = main.o lecturer_phd.o lecturer_msc.o learning_machine.o person.o student.o staff.o
+ofiles = main.o Hobbit.o Spell.o Wizard.o
 
 main: $(ofiles)
 	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -o main $(ofiles)
 
 main.o: main.cpp
-	g++ --Wall -Wextra -Werror -pedantic -std=c++11 -c main.cpp
+	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c main.cpp
 
-learning_machine.o: learning_machine.cpp learning_machine.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c learning_machine.cpp
+Hobbit.o: Hobbit.cpp Hobbit.h
+	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c Hobbit.cpp
 
-lecturer_msc.o: lecturer_msc.cpp lecturer_msc.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c lecturer_msc.cpp
+Spell.o: Spell.cpp Spell.h
+	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c Spell.cpp
 
-lecturer_phd.o: lecturer_phd.cpp lecturer_phd.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c lecturer_phd.cpp
-
-person.o: person.cpp person.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c person.cpp
-
-student.o: student.cpp student.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c student.cpp
-
-staff.o: staff.cpp staff.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c staff.cpp
+Wizard.o: Wizard.cpp Wizard.h
+	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c Wizard.cpp
 
 run: main
 	./main
