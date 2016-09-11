@@ -8,7 +8,7 @@ int main(int argc, char const *argv[]) {
         titleCase t;
         backwards r;
 
-        string s = "hELLO";
+        string s = "hELLO hOW aRE yOU? AND WHAT ARE YOU DOING? are you the grinch? or a grinch?";
         string ignore = "AND";
 
         cout << "Testing correction of: " << s << endl;
