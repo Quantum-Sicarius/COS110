@@ -1,5 +1,5 @@
+#include "global_includes.h"
 #include "staff.h"
-#include <sstream>
 
 Staff::Staff(std::string name_, Person::Gender gender_, double proficiency_) : Person(name_, gender_), LearningMachine(proficiency_)  {
 

@@ -1,18 +1,16 @@
+#include "global_includes.h"
 #include "learning_machine.h"
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
 
-double fRand(double fMin, double fMax)
-{
-        double f = (double)rand() / RAND_MAX;
-        return fMin + f * (fMax - fMin);
+LearningMachine::LearningMachine(double proficiency_) {
+        this->proficiency = proficiency_;
 }
 
 double LearningMachine::normalizeProficiency() {
-        /* initialize random seed: */
-        srand (time(NULL));
-
-        this->proficiency = fRand(0,100);
+        if (this->getProficiency() >= 100) {
+                this->proficiency = 100;
+        } else if(this->getProficiency() <= 0) {
+                this->proficiency = 0;
+        }
 
         return this->proficiency;
 }

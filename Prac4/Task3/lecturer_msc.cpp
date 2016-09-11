@@ -1,5 +1,5 @@
+#include "global_includes.h"
 #include "lecturer_msc.h"
-
 
 LecturerMsC::LecturerMsC(std::string name_, Gender gender_) : Staff(name_, gender_, 70) {
 
@@ -13,11 +13,21 @@ LecturerMsC::LecturerMsC(std::string name_, Gender gender_) : Staff(name_, gende
 // 5.) Good day, I am Mr Oyelami Babajide and you are? Hi Mr Oyelami Babajide, John Doe's the name.
 // Great, let's start the lesson (LecturerMsC teaches). young John Doe's Proficiency went from 0 to 3.85.
 std::string LecturerMsC::teach(Person * student) {
-        return student->greet() + " Great, let's start the lesson (LecturerMsC teaches). " + dynamic_cast<LearningMachine*>(student)->learn(this);
+        return this->greet(student) + " Great, let's start the lesson (LecturerMsC teaches). " + dynamic_cast<LearningMachine*>(student)->learn(this);
 }
 
-std::string LecturerMsC::learn(Person * student) {
+std::string LecturerMsC::learn(Person * teacher) {
+        double oldProf = this->getProficiency();
+        double newProf = this->getProficiency() + (dynamic_cast<LearningMachine*>(teacher)->getSomeProficiency() * 1.25);
 
+        this->proficiency = newProf;
+        this->normalizeProficiency();
+
+
+        std::stringstream buffer;
+        buffer << this->greet() << "'s Proficiency went from " << oldProf << " to " << this->proficiency << ".";
+
+        return buffer.str();
 }
 
 double LecturerMsC::getSomeProficiency() {

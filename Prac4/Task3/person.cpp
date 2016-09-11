@@ -1,9 +1,5 @@
+#include "global_includes.h"
 #include "person.h"
-#include <sstream>
-#include <iomanip>
-
-#include <string>
-#include <iostream>
 
 size_t Person::empNoCounter = 12345678;
 

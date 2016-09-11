@@ -1,7 +1,5 @@
 #include <iostream>
 
-
-
 #include "global_includes.h"
 #include "student.h"
 #include "staff.h"
@@ -10,8 +8,6 @@
 #include "lecturer_msc.h"
 
 using namespace std;
-
-
 
 int main(int argc, char **argv){
 								Person * phd1 = new LecturerPhD("Marde Helbig", Person::female);

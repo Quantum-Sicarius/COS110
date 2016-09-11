@@ -1,7 +1,5 @@
+#include "global_includes.h"
 #include "student.h"
-#include <sstream>
-
-#include <iostream>
 #include <math.h>
 
 Student::Student(std::string name_, Person::Gender gender_) : Person(name_, gender_), LearningMachine(0) {
@@ -13,14 +11,20 @@ Student::Student(std::string name_, Person::Gender gender_) : Person(name_, gend
  *  where <learned> is the string returned after the student (i.e. Person parameter) hase called learn
  */
 std::string Student::teach(Person * student) {
-        return student->greet() + " Um, let's start *cough*  (Student teaches). " + dynamic_cast<LearningMachine*>(student)->learn(this) + " Maybe I shouldn't teach :(";
+        return this->greet(student) + " Um, let's start *cough*  (Student teaches). " + dynamic_cast<LearningMachine*>(student)->learn(this) + " Maybe I shouldn't teach :(";
 }
 
 std::string Student::learn(Person * teacher) {
         double oldProf = this->getProficiency();
-        double newProf = this->getProficiency() + dynamic_cast<LearningMachine*>(teacher)->getProficiency() * 1.1;
+        double newProf = this->getProficiency() + (dynamic_cast<LearningMachine*>(teacher)->getSomeProficiency() * 1.1);
+
+        this->proficiency = newProf;
         this->normalizeProficiency();
-        return this->greet() + "'s Proficiency went from " + std::to_string(oldProf) + " to " + std::to_string(newProf) +".";
+
+        std::stringstream buffer;
+        buffer << this->greet() << "'s Proficiency went from " << oldProf << " to " << this->proficiency << ".";
+
+        return buffer.str();
 }
 
 double Student::getSomeProficiency() {
