@@ -1,8 +1,5 @@
+#include "global_includes.h"
 #include "person.h"
-#include <sstream>
-#include <iomanip>
-
-#include <iostream>
 
 size_t Person::empNoCounter = 12345678;
 
@@ -68,8 +65,4 @@ bool Person::recognize(Person * other) {
 
 Person::Gender Person::getGender() {
         return this->gender;
-}
-
-std::string Person::getName() {
-        return this->name;
 }

@@ -1,7 +1,5 @@
+#include "global_includes.h"
 #include "student.h"
-#include <sstream>
-
-#include <iostream>
 
 Student::Student(std::string name_, Person::Gender gender_) : Person(name_, gender_) {
 
@@ -9,7 +7,7 @@ Student::Student(std::string name_, Person::Gender gender_) : Person(name_, gend
 
 std::string Student::greet() {
         std::stringstream buffer;
-        buffer << this->getTitle() << " " << this->getName();
+        buffer << this->getTitle() << " " << Person::greet();
 
         return buffer.str();
 }
@@ -33,7 +31,7 @@ std::string Student::greet(Person *other) {
 }
 
 std::string Student::work() {
-        return this->getName() + " is " + Person::work() + " into the Student Portal to do some work.";
+        return Person::greet() + " is " + Person::work() + " into the Student Portal to do some work.";
 }
 
 std::string Student::getTitle() {
@@ -56,7 +54,7 @@ std::string Student::reply(Person *other) {
                 this->growAcquaintances();
                 this->colleagues[this->numColleagues - 1] = other;
 
-                std::string s = "Hi "+ other->greet() + ", " + this->getName() + "'s the name.";
+                std::string s = "Hi "+ other->greet() + ", " + Person::greet() + "'s the name.";
                 return s;
         }
 }

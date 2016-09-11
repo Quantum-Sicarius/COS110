@@ -1,7 +1,6 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include <string>
 
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
 /*IMPORTANT NO COUT STATEMENTS SHOULD BE IN YOUR SOURCE CODE, AND NO NEW LINES IN ANY RETURNED STRING*/
@@ -11,8 +10,6 @@ class Person
 {
 public:
 	enum Gender{male, female};
-	std::string getName();
-	//Gender getGender();
 	/**
 	* set this->numColleagues to 0
 	* set this->colleagues to 0

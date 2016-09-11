@@ -20,7 +20,7 @@ echo "Currently compressing: ${parentdir}Rev${value}"
 #files=$(ls *.cpp *.h)
 #echo ${files}
 
-files="learning_machine.cpp lecturer_msc.cpp lecturer_phd.cpp person.cpp student.cpp staff.cpp."
+files="learning_machine.cpp lecturer_msc.cpp lecturer_phd.cpp person.cpp student.cpp staff.cpp"
 
 tar -zcvf "${parentdir}Rev${value}".tar.gz ${files}
 

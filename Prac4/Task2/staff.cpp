@@ -1,5 +1,5 @@
+#include "global_includes.h"
 #include "staff.h"
-#include <sstream>
 
 Staff::Staff(std::string name_, Person::Gender gender_) : Person(name_, gender_)  {
 
@@ -7,7 +7,7 @@ Staff::Staff(std::string name_, Person::Gender gender_) : Person(name_, gender_)
 
 std::string Staff::greet() {
         std::stringstream buffer;
-        buffer << this->getTitle() << " " << this->getName();
+        buffer << this->getTitle() << " " << Person::greet();
 
         return buffer.str();
 
@@ -32,7 +32,7 @@ std::string Staff::greet(Person *other) {
 }
 
 std::string Staff::work() {
-        return this->getName() + " is " + Person::work() + " into the Staff Portal to do some work.";
+        return Person::greet() + " is " + Person::work() + " into the Staff Portal to do some work.";
 }
 
 std::string Staff::getTitle() {

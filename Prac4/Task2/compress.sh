@@ -20,9 +20,9 @@ echo "Currently compressing: ${parentdir}Rev${value}"
 #files=$(ls *.cpp *.h)
 #echo ${files}
 
-files="staff.cpp student.cpp person.cpp"
+files="person.cpp student.cpp staff.cpp"
 
 tar -zcvf "${parentdir}Rev${value}".tar.gz ${files}
 
 # and save it for next time
-echo "${value}" > /tmp/value.dat
+echo "${value}" > /tmp/${parentdir}/value.dat
