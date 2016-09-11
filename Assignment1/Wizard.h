@@ -1,4 +1,4 @@
-/* 
+/*
  * Class Wizard
  */
 
@@ -8,7 +8,7 @@
 #include "Spell.h"
 
 class Wizard{
-    
+
 private:
     Spell* spells;
     int numberOfSpells;
@@ -26,11 +26,10 @@ public:
     int getNumberOfSpells() const;
     void setMaxNumberOfSpells(int m);
     int getMaxNumberOfSpells() const;
-    void setAge(int a); 
+    void setAge(int a);
     int getAge() const;
     int getNumberOfLossedSpells() const;
     Spell& getSpell(int index) const;
 };
 
 #endif	/* WIZARD_H */
-
