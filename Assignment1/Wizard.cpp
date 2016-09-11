@@ -106,17 +106,17 @@ Spell& Wizard::getSpell(int index) const {
 }
 
 // Should compare only the same spells.
-bool Wizard::operator<(const Wizard& rhs) const {
+bool operator<(const Wizard& lhs,const Wizard& rhs) {
         int thisWizard = 0;
         int otherWizard = 0;
 
         // This wizard loop.
-        for (int i = 0; i < this->maxNumberOfSpells; i++) {
+        for (int i = 0; i < lhs.maxNumberOfSpells; i++) {
 
                 // Other wizard loop.
                 for (int j = 0; j < rhs.getMaxNumberOfSpells(); j++) {
-                        if (this->getSpell(i).getName() == rhs.getSpell(j).getName()) {
-                                if (this->getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
+                        if (lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) {
+                                if (lhs.getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
                                         otherWizard++;
                                 } else {
                                         thisWizard++;
@@ -131,17 +131,17 @@ bool Wizard::operator<(const Wizard& rhs) const {
         return false;
 }
 // Should compare only the same spells.
-bool Wizard::operator>(const Wizard& lhs) const {
+bool operator>(const Wizard& lhs,const Wizard& rhs) {
         int thisWizard = 0;
         int otherWizard = 0;
 
         // This wizard loop.
-        for (int i = 0; i < this->maxNumberOfSpells; i++) {
+        for (int i = 0; i < lhs.maxNumberOfSpells; i++) {
 
                 // Other wizard loop.
-                for (int j = 0; j < lhs.getMaxNumberOfSpells(); j++) {
-                        if (this->getSpell(i).getName() == lhs.getSpell(j).getName()) {
-                                if (this->getSpell(i).getSkillLevel() < lhs.getSpell(j).getSkillLevel()) {
+                for (int j = 0; j < rhs.getMaxNumberOfSpells(); j++) {
+                        if (lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) {
+                                if (lhs.getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
                                         otherWizard++;
                                 } else {
                                         thisWizard++;
@@ -156,14 +156,26 @@ bool Wizard::operator>(const Wizard& lhs) const {
         return false;
 }
 
-Wizard Wizard::operator+(const Spell& s) {
-        this->addSpell(s);
+// Attempted chain.
+Wizard Wizard::operator+(Spell &right) {
+        this->addSpell(right);
         return *this;
 }
 
-Wizard Wizard::operator-(const string s) {
+Wizard Wizard::operator-(string s) {
         this->deleteSpell(s);
         return *this;
+}
+
+// Attempted chain.
+Wizard& operator+(Wizard& left, Spell &right) {
+        left.addSpell(right);
+        return left;
+}
+
+Wizard operator-(Wizard& left,const string s) {
+        left.deleteSpell(s);
+        return left;
 }
 
 bool Wizard::getHasCompletedTraining() const {

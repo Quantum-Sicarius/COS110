@@ -34,10 +34,13 @@ public:
 
     Spell& getSpell(int index) const;
 
-    bool operator<(const Wizard& rhs) const;
-    bool operator>(const Wizard& lhs) const;
-    Wizard operator+(const Spell& s);
-    Wizard operator-(const string s);
+    friend bool operator<(const Wizard& lhs, const Wizard& rhs);
+    friend bool operator>(const Wizard& lhs, const Wizard& rhs);
+    friend Wizard operator+(const Wizard& lhs, const Spell& s);
+    Wizard operator+(Spell& s);
+    friend Wizard operator-(const Wizard& lhs, const string s);
+    Wizard operator-(string s);
+
 
     bool getHasCompletedTraining() const;
     bool getHasBeenSummoned() const;

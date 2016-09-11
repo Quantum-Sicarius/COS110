@@ -118,9 +118,7 @@ int main() {
         Hobbit h;
         h.setName("Frodo");
 
-        wiz + s5;
-        wiz + s6;
-        wiz + s7;
+        ((wiz + s5) + s6) + s7;
         wiz + s8;
         wiz + s9;
         wiz + s10;
@@ -130,7 +128,16 @@ int main() {
         cout << "Test compare < operator: should return 0" << endl;
         cout << "Result: ";
         cout << (wiz < wiz2) << endl << endl;
+
         cout << "Test compare < operator: should return 1" << endl;
+        cout << "Result: ";
+        cout << (wiz2 < wiz) << endl << endl;
+
+        cout << "Test compare > operator: should return 0" << endl;
+        cout << "Result: ";
+        cout << (wiz2 > wiz) << endl << endl;
+
+        cout << "Test compare > operator: should return 1" << endl;
         cout << "Result: ";
         cout << (wiz > wiz2) << endl << endl;
 
