@@ -29,12 +29,20 @@ public:
     void setAge(int a);
     int getAge() const;
     int getNumberOfLossedSpells() const;
+    void setNumberOfLossedSpells(int);
+
+
     Spell& getSpell(int index) const;
 
     bool operator<(const Wizard& rhs) const;
     bool operator>(const Wizard& lhs) const;
     Wizard operator+(const Spell& s);
     Wizard operator-(const string s);
+
+    bool getHasCompletedTraining() const;
+    bool getHasBeenSummoned() const;
+    void setHasCompletedTraining(bool);
+    void setHasBeenSummoned(bool);
 };
 
 #endif	/* WIZARD_H */

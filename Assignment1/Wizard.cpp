@@ -19,6 +19,8 @@ Wizard::Wizard(const Wizard &w) {
         this->numberOfSpells = w.getNumberOfSpells();
         this->maxNumberOfSpells = w.getMaxNumberOfSpells();
         this->numberOfLossedSpells = w.getNumberOfLossedSpells();
+        this->hasBeenSummoned = w.getHasBeenSummoned();
+        this->hasCompletedTraining = w.getHasCompletedTraining();
 
         // We use maxNumberOfSpells because we initialize empty spells with the name "".
         this->spells = new Spell[this->maxNumberOfSpells];
@@ -71,7 +73,7 @@ void Wizard::addSpell(const Spell& s) {
 }
 
 void Wizard::deleteSpell(string name) {
-        for (int i = 0; i < this->numberOfSpells; i++) {
+        for (int i = 0; i < this->maxNumberOfSpells; i++) {
                 if (this->spells[i].getName() == name) {
                         this->spells[i] = Spell("");
                         this->numberOfSpells--;
@@ -123,4 +125,24 @@ Wizard Wizard::operator+(const Spell& s) {
 Wizard Wizard::operator-(const string s) {
         this->deleteSpell(s);
         return *this;
+}
+
+bool Wizard::getHasCompletedTraining() const {
+        return this->hasCompletedTraining;
+}
+
+bool Wizard::getHasBeenSummoned() const {
+        return this->hasBeenSummoned;
+}
+
+void Wizard::setHasCompletedTraining(bool b) {
+        this->hasCompletedTraining = b;
+}
+
+void Wizard::setHasBeenSummoned(bool b) {
+        this->hasBeenSummoned = b;
+}
+
+void Wizard::setNumberOfLossedSpells(int i) {
+        this->numberOfLossedSpells = i;
 }

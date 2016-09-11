@@ -1,4 +1,4 @@
-/* 
+/*
  * Class Spell
  */
 
@@ -24,7 +24,17 @@ public:
     int getDifficultyLevel() const;
     void setSkillLevel(int s);
     int getSkillLevel() const;
+
+    Spell& operator=(const Spell& sp);
+    // Prefix.
+    Spell& operator++();
+    // Postfix
+    Spell operator++(int);
+    Spell operator--();
+    Spell operator--(int);
+    Spell operator-=(int);
+    friend ostream& operator<<(ostream& os, const Spell s);
+
 };
 
 #endif	/* SPELL_H */
-

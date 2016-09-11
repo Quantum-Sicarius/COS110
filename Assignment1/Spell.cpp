@@ -1,4 +1,5 @@
 #include "Spell.h"
+#include <iomanip>      // std::setw
 
 Spell::Spell(string name, int difficultyLevel, int skillLevel) {
         this->name = name;
@@ -40,4 +41,42 @@ void Spell::setSkillLevel(int s) {
 
 int Spell::getSkillLevel() const {
         return this->skillLevel;
+}
+
+Spell& Spell::operator=(const Spell& sp) {
+        this->name = sp.getName();
+        this->difficultyLevel = sp.getDifficultyLevel();
+        this->skillLevel = sp.getSkillLevel();
+
+        return *this;
+}
+
+Spell& Spell::operator++() {
+        ++this->skillLevel;
+        return *this;
+}
+
+Spell Spell::operator++(int) {
+        this->skillLevel++;
+        return *this;
+}
+
+Spell Spell::operator--() {
+        this->setSkillLevel(this->getSkillLevel() - 1);
+        return *this;
+}
+
+Spell Spell::operator--(int) {
+        this->setSkillLevel(this->getSkillLevel() - 1);
+        return *this;
+}
+
+Spell Spell::operator-=(int x) {
+        this->setSkillLevel(x);
+        return *this;
+}
+
+ostream& operator<<(ostream& os, const Spell s) {
+        os << right << setw(30) << s.getName() << setw(5) << right << s.getDifficultyLevel() << setw(5) << right << s.getSkillLevel();
+        return os;
 }
