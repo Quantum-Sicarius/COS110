@@ -51,14 +51,21 @@ Spell& Spell::operator=(const Spell& sp) {
         return *this;
 }
 
+// Preincrement.
 Spell& Spell::operator++() {
         ++this->skillLevel;
         return *this;
 }
-
+// Postincrement.
 Spell Spell::operator++(int) {
-        this->skillLevel++;
-        return *this;
+        // Save original value;
+        Spell s(*this);
+
+        // Increment this.
+        ++this->skillLevel;
+
+        // Return original.
+        return s;
 }
 
 Spell Spell::operator--() {
@@ -66,13 +73,15 @@ Spell Spell::operator--() {
         return *this;
 }
 
+// Post decrement.
 Spell Spell::operator--(int) {
+        Spell s(*this);
         this->setSkillLevel(this->getSkillLevel() - 1);
-        return *this;
+        return s;
 }
 
 Spell Spell::operator-=(int x) {
-        this->setSkillLevel(x);
+        this->setSkillLevel(this->getSkillLevel() - x);
         return *this;
 }
 
