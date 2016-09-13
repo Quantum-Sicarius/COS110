@@ -74,6 +74,14 @@ int main() {
         printSpell(s4);
         printSpell(s12);
 
+        cout << "Testing spell assignment with operator: " << endl;
+        cout << "Before:" << endl;
+        printSpell(s2);
+        s2=(++s1);
+        cout << "After: " << endl;
+        printSpell(s2);
+
+
         wiz + s1;
         wiz + s2;
 
@@ -118,7 +126,9 @@ int main() {
         Hobbit h;
         h.setName("Frodo");
 
-        ((wiz + s5) + s6) + s7;
+        wiz + s5;
+        wiz + s6;
+        wiz + s7;
         wiz + s8;
         wiz + s9;
         wiz + s10;

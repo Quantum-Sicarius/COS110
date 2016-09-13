@@ -76,7 +76,10 @@ void Wizard::addSpell(const Spell& s) {
 void Wizard::deleteSpell(string name) {
         for (int i = 0; i < this->maxNumberOfSpells; i++) {
                 if (this->spells[i].getName() == name) {
-                        this->spells[i] = Spell("");
+                        this->spells[i].setName("");
+                        this->spells[i].setDifficultyLevel(10);
+                        this->spells[i].setSkillLevel(5);
+
                         this->numberOfSpells--;
                         this->numberOfLossedSpells++;
                         return;
@@ -111,15 +114,15 @@ bool operator<(const Wizard& lhs,const Wizard& rhs) {
         int otherWizard = 0;
 
         // This wizard loop.
-        for (int i = 0; i < lhs.maxNumberOfSpells; i++) {
+        for (int i = 0; i < lhs.getMaxNumberOfSpells(); i++) {
 
                 // Other wizard loop.
                 for (int j = 0; j < rhs.getMaxNumberOfSpells(); j++) {
-                        if (lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) {
+                        if ((lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) && lhs.getSpell(i).getName() != "") {
                                 if (lhs.getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
-                                        otherWizard++;
+                                        ++otherWizard;
                                 } else {
-                                        thisWizard++;
+                                        ++thisWizard;
                                 }
                         }
                 }
@@ -136,15 +139,15 @@ bool operator>(const Wizard& lhs,const Wizard& rhs) {
         int otherWizard = 0;
 
         // This wizard loop.
-        for (int i = 0; i < lhs.maxNumberOfSpells; i++) {
+        for (int i = 0; i < lhs.getMaxNumberOfSpells(); i++) {
 
                 // Other wizard loop.
                 for (int j = 0; j < rhs.getMaxNumberOfSpells(); j++) {
-                        if (lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) {
+                        if ((lhs.getSpell(i).getName() == rhs.getSpell(j).getName()) && lhs.getSpell(i).getName() != "") {
                                 if (lhs.getSpell(i).getSkillLevel() < rhs.getSpell(j).getSkillLevel()) {
-                                        otherWizard++;
+                                        ++otherWizard;
                                 } else {
-                                        thisWizard++;
+                                        ++thisWizard;
                                 }
                         }
                 }
