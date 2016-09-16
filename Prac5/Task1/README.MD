@@ -9,10 +9,10 @@ An exception is a response to an event that happens during a program's execution
 Example usage:
 
 ```c++
- try {
-   throw Exception ("Test Exception");
- } catch (Exception e) {
-    cout << e.what() << endl; 
+try {
+  throw Exception ("Test Exception");
+} catch (Exception e) {
+  cout << e.what() << endl; 
 }
 ```
 

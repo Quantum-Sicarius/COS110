@@ -2,13 +2,9 @@
 
 In ths task you will be required to implement your own string class, where you will use the Exception class created in Task 2 to indicate errors in various operator functions. This class, CharString, needs to have the following operators overloaded:
 
-- **The + operator** :
+- **The + operator** : This operator should return a CharString where the characters from the right hand side are appended onto the string on the left hand side. If the right hand string is empty, an exception should be thrown with the text "The string is empty!". Example: "aaa" + "bbb" should return "aaabbb"
 
-  This operator should return a CharString where the characters from the right hand side are appended onto the string on the left hand side. If the right hand string is empty, an exception should be thrown with the text "The string is empty!". Example: "aaa" + "bbb" should return "aaabbb"
-
-- **The - operator** : This operator should return a CharString where every instance of the character on the right hand side is removed from the string on the left hand side. 2If there are no instances of the character in the string, then an exception should be thrown with the text "No character
-
-  <character> found!" , where <character> is the character on the right hand side. If the left hand string is empty, an exception should be thrown with the text "The string is empty!". If the result is an empty string, an exception should be thrown with the text "The result is an empty string!". Example: "banana" - "a" should return "bnn"</character></character>
+- **The - operator** : This operator should return a CharString where every instance of the character on the right hand side is removed from the string on the left hand side. 2If there are no instances of the character in the string, then an exception should be thrown with the text "No character 'x' found!" , where 'x' is the character on the right hand side. If the left hand string is empty, an exception should be thrown with the text "The string is empty!". If the result is an empty string, an exception should be thrown with the text "The result is an empty string!". Example: "banana" - "a" should return "bnn"
 
 - **The * operator**: This operator should return a CharString which consist of the left hand and right hand side interleaved. In other words, after every n-th character from the left hand string the n-th from the right string should follow. If the strings are not the same length, an exception should be thrown with the text "Strings are unequal lengths!". Example: "aaa"_ "bbb" should become "ababab".
 
