@@ -67,49 +67,157 @@ CharString CharString::operator+ (const CharString &s) {
                 throw Exception("The string is empty!");
         }
 
-        int totalSize = this->length() + s.length();
+        // New temporary instance.
+        CharString* cs = new CharString(*this);
+
+        int totalSize = cs->length() + s.length();
 
         // Make an array big enough for both char arrays.
-        this->reallocateArray(totalSize);
+        cs->reallocateArray(totalSize);
 
         // Remember the -1.
         // TODO: Check deep copy?
-        for (int i = this->length() - 1; i < totalSize; i++) {
-                this->characters[i] = s[i];
+        for (int i = cs->length() - 1; i < totalSize; i++) {
+                cs->characters[i] = s[i];
         }
 
-        return *this;
+        return *cs;
 }
 
 void CharString::operator+= (const CharString &s) {
-
+        *this + s;
 }
 
 /* Subtraction operators */
 CharString CharString::operator- (const char &c) {
+        if (this->length() == 0) {
+                throw Exception("The string is empty!");
+        }
+
+        // New temporary instance.
+        CharString* cs = new CharString(*this);
+
+        // Size holder.
+        int currentSize = cs->length();
+
+        // New CharString.
+        char* newCharacters = new char[cs->length()];
+
+        // Temp counter.
+        int newCharactersCounter = 0;
+
+        // Check if we even found the character.
+        bool found = false;
+
+        for (int i = 0; i < cs->length(); i++) {
+                if (cs->characters[i] == c) {
+                        found = true;
+                        --currentSize;
+                        cs->characters[i] = 0;
+                } else {
+                        newCharacters[newCharactersCounter] = cs->characters[i];
+                        ++newCharactersCounter;
+                }
+        }
+
+        // If we didn't find the character we must throw an exception.
+        if (!found) {
+                std::string exceptionS = "No character ’";
+                exceptionS += c;
+                exceptionS += "’ found!";
+                throw Exception(exceptionS);
+        }
+
+        // Clean up array.
+        cs->reallocateArray(newCharactersCounter);
+
+        // Check if empty string.
+        if (cs->length() == 0) {
+                throw Exception("The result is an empty string!");
+        }
+
+        return *cs;
 
 }
 
 void CharString::operator-= (const char &s) {
-
+        *this - s;
 }
 
 /* Multiplication operators */
 CharString CharString::operator* (const CharString &s) {
+        if (this->length() != s.length()) {
+                throw Exception("Strings are unequal lengths!");
+        }
 
+        // New temporary instance.
+        CharString* cs = new CharString(*this);
+
+        for (int i = 0; i < this->length(); i++) {
+                // Every second one.
+                if ((i % 2) == 0) {
+                        cs->characters[i] = s[i];
+                } else {
+                        cs->characters[i] = this->characters[i];
+                }
+        }
+
+        return *cs;
 }
 
 void CharString::operator*= (const CharString &s) {
-
+        *this * s;
 }
 
 /* Division operators */
 CharString CharString::operator/ (const CharString &s) {
+        if (this->length() == 0 || s.length() == 0) {
+                throw Exception("The string is empty!");
+        }
 
+        // New temporary instance.
+        CharString* cs = new CharString(*this);
+
+        // Size holder.
+        int currentSize = cs->length();
+
+        // New CharString.
+        char* newCharacters = new char[cs->length()];
+
+        // Temp counter.
+        int newCharactersCounter = 0;
+
+        // Check if we even found the character.
+        bool found = false;
+
+        for (int i = 0; i < cs->length(); i++) {
+                for (int j = 0; j < s.length(); j++) {
+                        if (cs->characters[i] == s[j]) {
+                                found = true;
+                                --currentSize;
+                                cs->characters[i] = 0;
+                        }
+                }
+        }
+
+        // If we didn't find the character we must throw an exception.
+        if (!found) {
+                throw Exception("No character found!");
+        }
+
+        // Clean up array.
+        cs->reallocateArray(newCharactersCounter);
+
+        // Check if empty string.
+        if (cs->length() == 0) {
+                throw Exception("The result is an empty string!");
+        }
+
+        return *cs;
 }
 
 void CharString::operator/= (const CharString &s) {
-
+        *this / s;
 }
 
 /* Equivalence operator */
@@ -122,6 +230,6 @@ char CharString::&operator[](int i) const {
 
 }
 
-const int CharString::ength() const {
+int CharString::length() const {
         return this->numChars;
 }
