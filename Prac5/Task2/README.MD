@@ -1,6 +1,6 @@
 # Task 2: CharString Class [20]
 
-In ths task you will be required to implement your own string class, where you will use the Exception class created in Task 2 to indicate errors in various operator functions. This class, CharString, needs to have the following operators overloaded:
+In this task you will be required to implement your own string class, where you will use the Exception class created in Task 2 to indicate errors in various operator functions. This class, **CharString**, needs to have the following operators overloaded:
 
 - **The + operator** : This operator should return a CharString where the characters from the right hand side are appended onto the string on the left hand side. If the right hand string is empty, an exception should be thrown with the text "The string is empty!". Example: "aaa" + "bbb" should return "aaabbb"
 

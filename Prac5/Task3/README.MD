@@ -17,9 +17,9 @@ Rather than initializing the exception with a value, classes for each class of e
 
   ```c++
   try {
-  throw EmptyException;
+    throw EmptyException;
   } catch (Exception e) {
-  cout « e.what() « endl;
+    cout << e.what() << endl;
   }
   ```
 

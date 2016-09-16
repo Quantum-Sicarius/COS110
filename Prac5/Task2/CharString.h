@@ -28,7 +28,7 @@ public:
 	void operator+= (const CharString &s);
 
 	/* Subtraction operators */
-	CharString operator- (const char &c);	
+	CharString operator- (const char &c);
 	void operator-= (const char &s);
 
 	/* Multiplication operators */
@@ -36,7 +36,7 @@ public:
 	void operator*= (const CharString &s);
 
 	/* Division operators */
-	CharString operator/ (const CharString &s);	
+	CharString operator/ (const CharString &s);
 	void operator/= (const CharString &s);
 
 	/* Equivalence operator */
@@ -46,7 +46,7 @@ public:
 	char &operator[](int i) const;
 
 	/* ostream operator */
-	friend ostream &operator << (ostream &os, const CharString &s);	
+	friend ostream &operator << (ostream &os, const CharString &s);
 
 	/* Get the length of the array */
 	const int length() const;

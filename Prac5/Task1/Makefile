@@ -6,8 +6,8 @@ main: $(ofiles)
 main.o: main.cpp
 	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c main.cpp
 
-exception.o: exception.cpp exception.h
-	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c exception.cpp
+exception.o: Exception.cpp Exception.h
+	g++ -Wall -Wextra -Werror -pedantic -std=c++11 -c Exception.cpp
 
 run: main
 	./main
