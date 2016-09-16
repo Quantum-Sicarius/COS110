@@ -1,4 +1,5 @@
 #include "CharString.h"
+#include <sstream>      // std::stringstream
 
 void CharString::reallocateArray(int newSize) {
         //  Create new array.
@@ -23,6 +24,7 @@ CharString::CharString() {
 }
 
 CharString::CharString(const char* c, int size) {
+        this->numChars = 0;
         this->reallocateArray(size);
 
         for (int i = 0; i < this->length(); i++) {
@@ -54,6 +56,8 @@ const CharString CharString::operator= (const CharString &s) {
         for (int i = 0; i < this->length(); i++) {
                 this->characters[i] = s[i];
         }
+
+        return *this;
 }
 
 /*
@@ -189,14 +193,23 @@ CharString CharString::operator/ (const CharString &s) {
 
         // Check if we even found the character.
         bool found = false;
+        bool localizedFound = false;
 
         for (int i = 0; i < cs->length(); i++) {
+                localizedFound = false;
+
                 for (int j = 0; j < s.length(); j++) {
                         if (cs->characters[i] == s[j]) {
+                                localizedFound = true;
                                 found = true;
                                 --currentSize;
                                 cs->characters[i] = 0;
                         }
+                }
+
+                if (!localizedFound) {
+                        newCharacters[newCharactersCounter] = cs->characters[i];
+                        ++newCharactersCounter;
                 }
         }
 
@@ -222,13 +235,37 @@ void CharString::operator/= (const CharString &s) {
 
 /* Equivalence operator */
 bool CharString::operator == (const CharString &s) {
+        if (this->length() != s.length()) {
+                return false;
+        }
 
+
+        for (int i = 0; i < this->length(); i++) {
+                if (this->characters[i] != s[i]) {
+                        return false;
+                }
+        }
+
+        return true;
 }
 
 /* Element access operators */
-char CharString::&operator[](int i) const {
+char &CharString::operator[](int i) const {
+        if (i < 0 || i > this->length()) {
+                throw Exception("Index out of bounds!");
+        }
 
+        return this->characters[i];
 }
+
+ostream &operator << (ostream &os, const CharString &s) {
+        for (int i = 0; i < s.length(); i++) {
+                os << s[i];
+        }
+
+        return os;
+}
+
 
 int CharString::length() const {
         return this->numChars;
