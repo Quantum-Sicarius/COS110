@@ -23,7 +23,7 @@ Rather than initializing the exception with a value, classes for each class of e
   }
   ```
 
-  Output: `The String is empty!</character>`
+  Output: `The String is empty!`
 
 Modify your files from Task 2 to use these Exception classes, rather than passing in strings. There should be no output statements in your code, and no newline characters in any strings.
 

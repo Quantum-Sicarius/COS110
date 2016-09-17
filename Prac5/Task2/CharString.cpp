@@ -25,6 +25,8 @@ CharString::CharString() {
 
 CharString::CharString(const char* c, int size) {
         this->numChars = 0;
+        this->characters = 0;
+
         this->reallocateArray(size);
 
         for (int i = 0; i < this->length(); i++) {
@@ -35,6 +37,8 @@ CharString::CharString(const char* c, int size) {
 /* Copy constructor */
 CharString::CharString(const CharString &s) {
         this->numChars = 0;
+        this->characters = 0;
+
         this->reallocateArray(s.length());
 
         // TODO: Deep copy.
@@ -81,7 +85,7 @@ CharString CharString::operator+ (const CharString &s) {
 
         // Remember the -1.
         // TODO: Check deep copy?
-        for (int i = cs->length() - 1; i < totalSize; i++) {
+        for (int i = cs->length(); i < totalSize; i++) {
                 cs->characters[i] = s[i];
         }
 
@@ -145,7 +149,7 @@ CharString CharString::operator- (const char &c) {
 }
 
 void CharString::operator-= (const char &s) {
-        *this - s;
+        *this = *this - s;
 }
 
 /* Multiplication operators */
@@ -156,13 +160,21 @@ CharString CharString::operator* (const CharString &s) {
 
         // New temporary instance.
         CharString* cs = new CharString(*this);
+        int totalSize = cs->length() + s.length();
 
-        for (int i = 0; i < this->length(); i++) {
+        cs->reallocateArray(totalSize);
+
+        int firstSize = 0;
+        int secondSize = 0;
+
+        for (int i = 0; i < cs->length(); i++) {
                 // Every second one.
                 if ((i % 2) == 0) {
-                        cs->characters[i] = s[i];
+                        cs->characters[i] = this->characters[firstSize];
+                        ++firstSize;
                 } else {
-                        cs->characters[i] = this->characters[i];
+                        cs->characters[i] = s[secondSize];
+                        ++secondSize;
                 }
         }
 
@@ -170,7 +182,7 @@ CharString CharString::operator* (const CharString &s) {
 }
 
 void CharString::operator*= (const CharString &s) {
-        *this * s;
+        *this = *this * s;
 }
 
 /* Division operators */
@@ -179,14 +191,8 @@ CharString CharString::operator/ (const CharString &s) {
                 throw Exception("The string is empty!");
         }
 
-        // New temporary instance.
-        CharString* cs = new CharString(*this);
-
-        // Size holder.
-        int currentSize = cs->length();
-
         // New CharString.
-        char* newCharacters = new char[cs->length()];
+        char* newCharacters = new char[this->length()];
 
         // Temp counter.
         int newCharactersCounter = 0;
@@ -195,20 +201,18 @@ CharString CharString::operator/ (const CharString &s) {
         bool found = false;
         bool localizedFound = false;
 
-        for (int i = 0; i < cs->length(); i++) {
+        for (int i = 0; i < this->length(); i++) {
                 localizedFound = false;
 
                 for (int j = 0; j < s.length(); j++) {
-                        if (cs->characters[i] == s[j]) {
+                        if (this->characters[i] == s[j]) {
                                 localizedFound = true;
                                 found = true;
-                                --currentSize;
-                                cs->characters[i] = 0;
                         }
                 }
 
                 if (!localizedFound) {
-                        newCharacters[newCharactersCounter] = cs->characters[i];
+                        newCharacters[newCharactersCounter] = this->characters[i];
                         ++newCharactersCounter;
                 }
         }
@@ -218,19 +222,20 @@ CharString CharString::operator/ (const CharString &s) {
                 throw Exception("No character found!");
         }
 
-        // Clean up array.
-        cs->reallocateArray(newCharactersCounter);
+        // New temporary instance.
+        CharString* csTemp = new CharString(newCharacters,newCharactersCounter);
+
 
         // Check if empty string.
-        if (cs->length() == 0) {
+        if (csTemp->length() == 0) {
                 throw Exception("The result is an empty string!");
         }
 
-        return *cs;
+        return *csTemp;
 }
 
 void CharString::operator/= (const CharString &s) {
-        *this / s;
+        *this = *this / s;
 }
 
 /* Equivalence operator */
