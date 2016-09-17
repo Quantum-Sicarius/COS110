@@ -78,6 +78,7 @@ CharString CharString::operator+ (const CharString &s) {
         // New temporary instance.
         CharString* cs = new CharString(*this);
 
+        int previousSize = cs->length();
         int totalSize = cs->length() + s.length();
 
         // Make an array big enough for both char arrays.
@@ -85,15 +86,15 @@ CharString CharString::operator+ (const CharString &s) {
 
         // Remember the -1.
         // TODO: Check deep copy?
-        for (int i = cs->length(); i < totalSize; i++) {
-                cs->characters[i] = s[i];
+        for (int i = 0; i < s.length(); i++) {
+                cs->characters[(i + previousSize)] = s[i];
         }
 
         return *cs;
 }
 
 void CharString::operator+= (const CharString &s) {
-        *this + s;
+        *this = *this + s;
 }
 
 /* Subtraction operators */

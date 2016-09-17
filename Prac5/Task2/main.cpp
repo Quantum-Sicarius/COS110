@@ -63,9 +63,9 @@ int main() {
         CharString fith(cstr5,7);
         CharString six(cstr6,4);
 
-        cout << "Testing /operator: " << endl;
+        cout << "Testing /=operator: " << endl;
         try {
-                cout << "Result: " << endl;
+                cout << "Result: ";
                 fith /= six;
                 cout << fith << endl;
         } catch(Exception e) {
@@ -73,6 +73,25 @@ int main() {
 
         }
 
+        std::string str7 = "dog";
+        char *cstr7 = &str7[0u];
+        std::string str8 = "dog";
+        char *cstr8 = &str8[0u];
+
+        CharString seven(cstr7,3);
+        CharString eight(cstr8,3);
+
+        cout << "Testing ==operator: " << endl;
+        try {
+                cout << "Result: should be 1 ";
+                cout << (seven == eight) << endl;
+
+                cout << "Result: should be 0 ";
+                cout << (seven == six) << endl;
+        } catch(Exception e) {
+                cout << e.what() << endl;
+
+        }
 
         return 0;
 }
