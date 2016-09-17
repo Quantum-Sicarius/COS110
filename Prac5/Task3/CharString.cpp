@@ -129,7 +129,11 @@ CharString CharString::operator- (const char &c) {
 
         // If we didn't find the character we must throw an exception.
         if (!found) {
-                throw CharacterNotFoundException(c + "");
+                stringstream ss;
+                std::string s;
+                ss << c;
+                ss >> s;
+                throw CharacterNotFoundException(s);
         }
 
 
