@@ -3,13 +3,20 @@
 
 int main() {
 
-        std::string str = "bananna";
+        std::string str = "banana";
         char *cstr = &str[0u];
 
-        CharString first(cstr, 7);
+        CharString first(cstr, 6);
 
         cout << "Testing -operator: " << endl;
         cout << "Result: " << (first-'a') << endl;
+
+        cout << "Testing throw: " << endl;
+        try {
+                first - 'x';
+        } catch (Exception e) {
+                cout << e.what() << endl;
+        }
 
         cout << "Testing -=operator: " << endl;
         (first-='a');

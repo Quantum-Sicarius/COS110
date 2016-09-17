@@ -103,14 +103,8 @@ CharString CharString::operator- (const char &c) {
                 throw Exception("The string is empty!");
         }
 
-        // New temporary instance.
-        CharString* cs = new CharString(*this);
-
-        // Size holder.
-        int currentSize = cs->length();
-
         // New CharString.
-        char* newCharacters = new char[cs->length()];
+        char* newCharacters = new char[this->length()];
 
         // Temp counter.
         int newCharactersCounter = 0;
@@ -118,13 +112,11 @@ CharString CharString::operator- (const char &c) {
         // Check if we even found the character.
         bool found = false;
 
-        for (int i = 0; i < cs->length(); i++) {
-                if (cs->characters[i] == c) {
+        for (int i = 0; i < this->length(); i++) {
+                if (this->characters[i] == c) {
                         found = true;
-                        --currentSize;
-                        cs->characters[i] = 0;
                 } else {
-                        newCharacters[newCharactersCounter] = cs->characters[i];
+                        newCharacters[newCharactersCounter] = this->characters[i];
                         ++newCharactersCounter;
                 }
         }
@@ -137,8 +129,10 @@ CharString CharString::operator- (const char &c) {
                 throw Exception(exceptionS);
         }
 
-        // Clean up array.
-        cs->reallocateArray(newCharactersCounter);
+
+        // New temporary instance.
+        CharString* cs = new CharString(newCharacters, newCharactersCounter);
+
 
         // Check if empty string.
         if (cs->length() == 0) {

@@ -14,10 +14,10 @@ FAIL Test 10: '-' operator is modifying its parameters.
 FAIL Test 11: '-=' operator is not functioning correctly.
 FAIL Test 12: '-' operator is not throwing the correct exception when character is not found.
 FAIL Test 13: '-' operator is not throwing the correct exception when input is empty.
-FAIL Test 14: '\*' operator is not functioning correctly.
-FAIL Test 15: '\*' operator is modifying its parameters.
-FAIL Test 16: '\*=' operator is not functioning correctly.
-FAIL Test 17: '\*' operator is not throwing the correct exception when strings are different lengths.
+FAIL Test 14: '*' operator is not functioning correctly.
+FAIL Test 15: '*' operator is modifying its parameters.
+FAIL Test 16: '*=' operator is not functioning correctly.
+FAIL Test 17: '*' operator is not throwing the correct exception when strings are different lengths.
 FAIL Test 18: '/' operator is not functioning correctly.
 FAIL Test 19: '/' operator is modifying its parameters.
 FAIL Test 20: '/=' operator is not functioning correctly.

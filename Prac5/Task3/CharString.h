@@ -49,7 +49,7 @@ public:
 	friend ostream &operator << (ostream &os, const CharString &s);
 
 	/* Get the length of the array */
-	int length() const;
+	const int length() const;
 
 private:
 	/* Allocate more space to the array */

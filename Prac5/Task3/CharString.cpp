@@ -109,14 +109,8 @@ CharString CharString::operator- (const char &c) {
                 throw EmptyException();
         }
 
-        // New temporary instance.
-        CharString* cs = new CharString(*this);
-
-        // Size holder.
-        int currentSize = cs->length();
-
         // New CharString.
-        char* newCharacters = new char[cs->length()];
+        char* newCharacters = new char[this->length()];
 
         // Temp counter.
         int newCharactersCounter = 0;
@@ -124,24 +118,24 @@ CharString CharString::operator- (const char &c) {
         // Check if we even found the character.
         bool found = false;
 
-        for (int i = 0; i < cs->length(); i++) {
-                if (cs->characters[i] == c) {
+        for (int i = 0; i < this->length(); i++) {
+                if (this->characters[i] == c) {
                         found = true;
-                        --currentSize;
-                        cs->characters[i] = 0;
                 } else {
-                        newCharacters[newCharactersCounter] = cs->characters[i];
+                        newCharacters[newCharactersCounter] = this->characters[i];
                         ++newCharactersCounter;
                 }
         }
 
         // If we didn't find the character we must throw an exception.
         if (!found) {
-                throw CharacterNotFoundException("" + c);
+                throw CharacterNotFoundException(c + "");
         }
 
-        // Clean up array.
-        cs->reallocateArray(newCharactersCounter);
+
+        // New temporary instance.
+        CharString* cs = new CharString(newCharacters, newCharactersCounter);
+
 
         // Check if empty string.
         if (cs->length() == 0) {
@@ -276,6 +270,6 @@ ostream &operator << (ostream &os, const CharString &s) {
 }
 
 
-int CharString::length() const {
+const int CharString::length() const {
         return this->numChars;
 }
