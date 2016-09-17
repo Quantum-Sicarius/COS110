@@ -273,6 +273,6 @@ ostream &operator << (ostream &os, const CharString &s) {
 }
 
 
-int CharString::length() const {
+const int CharString::length() const {
         return this->numChars;
 }
