@@ -227,7 +227,6 @@ CharString CharString::operator/ (const CharString &s) {
         // New temporary instance.
         CharString* csTemp = new CharString(newCharacters,newCharactersCounter);
 
-
         // Check if empty string.
         if (csTemp->length() == 0) {
                 throw EmptyResultException();
@@ -258,7 +257,7 @@ bool CharString::operator == (const CharString &s) {
 
 /* Element access operators */
 char &CharString::operator[](int i) const {
-        if (i < 0 || i > this->length()) {
+        if (i < 0 || i >= this->length()) {
                 throw OutOfBoundsException();
         }
 

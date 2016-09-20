@@ -136,6 +136,14 @@ int main() {
                 cout << e.what() << endl;
         }
 
+        try {
+                cout << "Testing unequal: " << endl;
+                ten * nine;
+        } catch (Exception e) {
+                cout << "Exception thrown: ";
+                cout << e.what() << endl;
+        }
+
 
         return 0;
 }
