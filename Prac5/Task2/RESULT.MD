@@ -1,5 +1,11 @@
 # Results:
 
+Module |        Assignment         |       Date Uploaded       |         File         | Mark
+------ | :-----------------------: | :-----------------------: | :------------------: | ---:
+COS110 | Prac 5 - CharString Class | Tue 20 Sep 2016, 17:58:34 | PracTask2Rev4.tar.gz |   30
+
+## User Log:
+
 ```
 PASS Test 1
 PASS Test 2
@@ -12,7 +18,7 @@ PASS Test 8
 PASS Test 9
 PASS Test 10
 PASS Test 11
-FAIL Test 12: '-' operator is not throwing the correct exception when character is not found.
+PASS Test 12
 PASS Test 13
 PASS Test 14
 PASS Test 15
@@ -26,7 +32,7 @@ PASS Test 22
 PASS Test 23
 PASS Test 24
 PASS Test 25
-FAIL Test 26: '[]' operator is not throwing the correct exception when the index is out of bounds.
+PASS Test 26
 PASS Test 27
 PASS Test 28
 PASS Test 29

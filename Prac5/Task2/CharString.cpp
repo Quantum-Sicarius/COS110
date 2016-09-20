@@ -123,9 +123,9 @@ CharString CharString::operator- (const char &c) {
 
         // If we didn't find the character we must throw an exception.
         if (!found) {
-                std::string exceptionS = "No character ’";
+                std::string exceptionS = "No character '";
                 exceptionS += c;
-                exceptionS += "’ found!";
+                exceptionS += "' found!";
                 throw Exception(exceptionS);
         }
 
@@ -251,7 +251,7 @@ bool CharString::operator == (const CharString &s) {
 
 /* Element access operators */
 char &CharString::operator[](int i) const {
-        if (i < 0 || i > this->length()) {
+        if (i < 0 || i >= this->length()) {
                 throw Exception("Index out of bounds!");
         }
 
