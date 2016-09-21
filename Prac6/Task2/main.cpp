@@ -43,7 +43,27 @@ int main() {
 
         x.deleteNode("oneChanged");
         x.display();
-        cout << "==================================" << endl;
+        cout << "================= TEST SHORTEN =================" << endl;
+
+        x.shorten();
+
+        x.display();
+        cout << "================= TEST SHORTEN =================" << endl;
+
+        x.shorten();
+
+        x.display();
+        cout << "================= TEST SHORTEN =================" << endl;
+
+        x.shorten();
+        x.shorten();
+
+
+        x.display();
+        cout << "================= TEST DELETE UNKOWN ==================" << endl;
+
+        x.deleteNode("oneChanged");
+        x.display();
 
         return 0;
 }

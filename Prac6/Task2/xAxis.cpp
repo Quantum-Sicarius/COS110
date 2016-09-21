@@ -2,13 +2,18 @@
 
 
 xAxis::~xAxis() {
-        node* current_Node = this->head;
-        while (current_Node->next != 0) {
+        /*node* current_Node = this->head;
+           while (current_Node->next != 0) {
                 current_Node = current_Node->next;
-        }
-        delete current_Node;
+           }
 
-        delete this->head;
+           // TODO: This function will not delete all values and will cause memory leak.
+
+           if (current_Node == this->head) {
+                delete this->head;
+           } else {
+                delete current_Node;
+           }*/
 }
 xAxis::xAxis() {
         this->head = 0;
@@ -66,30 +71,51 @@ void xAxis::extend(double v,string n) {
 
 /*removes the last node from the linked list*/
 void xAxis::shorten() {
+        // If list empty just return.
+        if (!this->head) {
+                return;
+        }
+
         node* last_Node = this->head;
         node* prev_Node = 0;
+
         // Traverse entire list to the end.
-        while (last_Node->next != 0) {
+        while (last_Node && last_Node->next != 0) {
                 // Save the previous node.
                 prev_Node = last_Node;
                 last_Node = last_Node->next;
         }
 
-        last_Node->next = 0;
-        // Delete the last node.
-        delete last_Node;
+        if (last_Node) {
+                // Point previous node to 0;
+                if (prev_Node) {
+                        prev_Node->next = 0;
 
-        // Point previous node to 0;
-        prev_Node->next = 0;
+                        last_Node->next = 0;
+                        // Delete the last node.
+                        delete last_Node;
+                } else {
+                        this->head->next = 0;
+                        delete this->head;
+                        this->head = 0;
+                }
+
+        }
+
 }
 /*removes the node with the label n from the linked list*/
 void xAxis::deleteNode(string n) {
+        // If list empty just return.
+        if (!this->head) {
+                return;
+        }
+
         node* current_Node = this->head;
         node* prev_Node = 0;
         node* next_Node = 0;
 
         // Traverse till we find the name;
-        while (current_Node->next != 0) {
+        while (current_Node && current_Node->next != 0) {
                 // If found exit loop.
                 if (current_Node->label == n) {
                         break;
@@ -111,7 +137,9 @@ void xAxis::deleteNode(string n) {
         delete current_Node;
 
         // Fix pointers.
-        prev_Node->next = next_Node;
+        if (prev_Node) {
+                prev_Node->next = next_Node;
+        }
 }
 /*increases the value of the node with label n by val*/
 void xAxis::increaseValueBy(string n,double val) {
@@ -165,12 +193,17 @@ void xAxis::changeLabel(string o,string n) {
  */
 void xAxis::display() {
         node* current_Node = this->head;
-        cout << current_Node->label << "\t" << current_Node->value << endl;
+        if (current_Node) {
+                cout << current_Node->label << "\t" << current_Node->value << endl;
+        }
 
         // Traverse till we reach the end;
-        do {
+        while (current_Node && current_Node->next != 0) {
                 current_Node = current_Node->next;
-                cout << current_Node->label << "\t" << current_Node->value << endl;
 
-        } while (current_Node->next != 0);
+                // Just check if we have current_Node.
+                if (current_Node) {
+                        cout << current_Node->label << "\t" << current_Node->value << endl;
+                }
+        }
 }
