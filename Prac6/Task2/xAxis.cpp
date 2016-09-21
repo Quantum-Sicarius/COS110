@@ -109,11 +109,17 @@ void xAxis::deleteNode(string n) {
         node* current_Node = this->head;
         node* prev_Node = 0;
         node* next_Node = 0;
+        bool found = false;
+
+        if (current_Node && current_Node->label == n) {
+                found = true;
+        }
 
         // Traverse till we find the name;
         while (current_Node && current_Node->next != 0) {
                 // If found exit loop.
                 if (current_Node->label == n) {
+                        found = true;
                         break;
                 }
 
@@ -121,6 +127,10 @@ void xAxis::deleteNode(string n) {
                 current_Node = current_Node->next;
                 // TODO: THIS LOOKS FISHY.
                 next_Node = current_Node->next;
+        }
+
+        if (!found) {
+                return;
         }
 
         // If the current node is the head we must repoint the head.

@@ -38,6 +38,7 @@ int main() {
 
         x.deleteNode("oneChanged");
         x.deleteNode("threeChanged");
+        x.deleteNode("nonexistant");
         x.display();
         cout << "================= TEST SHORTEN =================" << endl;
 
@@ -47,6 +48,8 @@ int main() {
         cout << "================= TEST SHORTEN =================" << endl;
 
         x.shorten();
+        cout << "CASUAL DELETE" << endl;
+        x.deleteNode("twoChanged");
 
         x.display();
         cout << "================= TEST SHORTEN =================" << endl;
