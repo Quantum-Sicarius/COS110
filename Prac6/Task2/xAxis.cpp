@@ -2,18 +2,6 @@
 
 
 xAxis::~xAxis() {
-        /*node* current_Node = this->head;
-           while (current_Node->next != 0) {
-                current_Node = current_Node->next;
-           }
-
-           // TODO: This function will not delete all values and will cause memory leak.
-
-           if (current_Node == this->head) {
-                delete this->head;
-           } else {
-                delete current_Node;
-           }*/
 }
 xAxis::xAxis() {
         this->head = 0;
@@ -34,7 +22,11 @@ xAxis::xAxis(int length, string* n, double* v) {
                         value = 0;
                 }
 
-                current_Node = new node {value, n[i], 0};
+                current_Node = new node;
+                // Changed for FitchFork.
+                current_Node->label = n[i];
+                current_Node->value = value;
+                current_Node->next = 0;
 
                 if (this->head == 0) {
                         this->head = current_Node;
@@ -64,7 +56,11 @@ void xAxis::extend(double v,string n) {
                 value = 0;
         }
 
-        node* current_Node = new node {value, n, 0};
+        node* current_Node = new node;
+        // Changed for FitchFork.
+        current_Node->label = n;
+        current_Node->value = value;
+        current_Node->next = 0;
 
         last_Node->next = current_Node;
 }

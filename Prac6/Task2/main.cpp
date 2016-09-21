@@ -34,14 +34,10 @@ int main() {
         x.extend(3.9, "five");
 
         x.display();
-        cout << "================= TEST SHORTEN =================" << endl;
-
-        x.shorten();
-
-        x.display();
         cout << "================= TEST DELETE ==================" << endl;
 
         x.deleteNode("oneChanged");
+        x.deleteNode("threeChanged");
         x.display();
         cout << "================= TEST SHORTEN =================" << endl;
 
