@@ -8,5 +8,6 @@ public:
   void setSeed(long int);
   char encodeChar(char);
   char decodeChar(char);
+  std::string encode(std::string);
   std::string decode(std::string);
 };
