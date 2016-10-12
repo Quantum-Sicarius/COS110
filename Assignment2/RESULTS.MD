@@ -47,26 +47,26 @@ Success: encode zig-zag text with rows-columns
 ```
 Success: cipher pipeline, +=
 Success: cipher pipeline, +=
-Failure: cipher pipeline, +=
-Failure: cipher pipeline, +=
+Success: cipher pipeline, +=
+Success: cipher pipeline, +=
 Success: cipher pipeline encode: =, +
 Success: cipher pipeline decode: =, +
-Failure: cipher pipeline encode: +=, +
-Failure: cipher pipeline encode: +=, +
+Success: cipher pipeline encode: +=, +
+Success: cipher pipeline decode: +=, +
 
 Success: caesar error handling
 Success: cipher pipeline, +=
 Success: cipher pipeline, +=
-Failure: cipher pipeline, +=
-Failure: cipher pipeline, +=
+Success: cipher pipeline, +=
+Success: cipher pipeline, +=
 Success: cipher pipeline, =, +
-Failure: cipher pipeline encode: +=, +
+Success: cipher pipeline encode: +=, +
 Success: cipher pipeline decode: +=, +
 
 Success: cipher pipeline, +=
 Success: cipher pipeline, +=
-Failure: cipher pipeline, +=
-Failure: cipher pipeline, +=
+Success: cipher pipeline, +=
+Success: cipher pipeline, +=
 Success: cipher pipeline, =, +
-Failure: cipher pipeline, +=, +
+Success: cipher pipeline, +=, +
 ```

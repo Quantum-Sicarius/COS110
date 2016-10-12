@@ -158,7 +158,7 @@ int main() {
 
   std::cout << std::endl;
 
-  pipe += rc + zz;
+  pipe += (rc + zz);
   encoded = pipe.encode(text);
   std::cout << encoded << std::endl;
   std::cout << pipe.decode(encoded) << std::endl;

@@ -1,15 +1,9 @@
-ofiles = main.o Cipher.o CipherPipeline.o SubstitutionCipher.o OneTimePad.o Caesar.o TranspositionCipher.o RowsColumns.o ZigZag.o
+ofiles = CipherPipeline.o SubstitutionCipher.o OneTimePad.o Caesar.o TranspositionCipher.o RowsColumns.o ZigZag.o main.o
 CXX = clang++
 flags = -Wall -Wextra -Werror -pedantic -std=c++11
 
 main: $(ofiles)
 	$(CXX) $(ofiles) $(flags) -o main
-
-main.o: main.cpp Cipher.h
-	$(CXX) $(flags) -c main.cpp
-
-Cipher.o: Cipher.cpp Cipher.h
-	$(CXX) $(flags) -c Cipher.cpp
 
 CipherPipeline.o: CipherPipeline.cpp CipherPipeline.h Cipher.h
 	$(CXX) $(flags) -c CipherPipeline.cpp
@@ -31,6 +25,9 @@ RowsColumns.o: RowsColumns.cpp RowsColumns.h TranspositionCipher.h
 
 ZigZag.o: ZigZag.cpp ZigZag.h TranspositionCipher.h
 	$(CXX) $(flags) -c ZigZag.cpp
+
+main.o: main.cpp Cipher.h
+	$(CXX) $(flags) -c main.cpp
 
 run: main
 	./main

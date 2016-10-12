@@ -4,6 +4,8 @@
 #include "Cipher.h"
 #include <vector>
 
+std::vector<Cipher*> operator+(Cipher &lhs, Cipher &rhs);
+
 class CipherPipeline {
 private:
   std::vector<Cipher*> pipeline;

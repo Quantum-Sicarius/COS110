@@ -4,17 +4,16 @@
 std::string CipherPipeline::encode(std::string s) {
   std::string result = s;
 
-  for (size_t i = this->pipeline.size(); i--;) {
-    result = this->pipeline.at(i)->encode(result);
+  for (size_t i = 0; i < this->pipeline.size(); i++) {
+    result = (this->pipeline[i])->encode(result);
   }
 
   return result;
 }
 std::string CipherPipeline::decode(std::string s) {
   std::string result = s;
-
-  for (size_t i = 0; i < this->pipeline.size(); i++) {
-    result = this->pipeline.at(i)->decode(result);
+  for (size_t i = this->pipeline.size(); i--;) {
+    result = (this->pipeline[i])->decode(result);
   }
 
   return result;
@@ -25,17 +24,22 @@ CipherPipeline &CipherPipeline::operator+=(Cipher *c) {
   return *this;
 }
 CipherPipeline &CipherPipeline::operator+=(std::vector<Cipher *> c) {
-  this->pipeline.insert(std::end(this->pipeline), std::begin(c), std::end(c));
-
-  // for (size_t i = 0; i < c.size(); i++) {
-  //  this->pipeline.push_back(c.at(i));
-  //}
+  for (size_t i = 0; i < c.size(); i++) {
+    this->pipeline.push_back(c[i]);
+  }
   return *this;
 }
 CipherPipeline &CipherPipeline::operator=(std::vector<Cipher *> c) {
   this->pipeline.clear();
   for (size_t i = 0; i < c.size(); i++) {
-    this->pipeline.push_back(c.at(i));
+    this->pipeline.push_back(c[i]);
   }
   return *this;
+}
+
+std::vector<Cipher *> operator+(Cipher &lhs, Cipher &rhs) {
+  std::vector<Cipher *> result;
+  result.push_back(&lhs);
+  result.push_back(&rhs);
+  return result;
 }
