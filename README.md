@@ -10,7 +10,7 @@ All code is licenced under the `MIT Licence`. All task specifications are owned 
 
 Practical   | Task  |                                                                                       Result
 ----------- | :---: | -------------------------------------------------------------------------------------------:
-Assignment1 |       |
 Assignment2 |  All  | [![Mark](https://img.shields.io/badge/mark-100%25-brightgreen.svg)](/Assignment2/RESULTS.MD)
+Prac7       | Task1 |       [![Mark](https://img.shields.io/badge/mark-100%25-brightgreen.svg)](/Prac7/RESULTS.MD)
 Prac6       | Task1 | [![Mark](https://img.shields.io/badge/mark-100%25-brightgreen.svg)](/Prac6/Task1/RESULTS.MD)
 Prac6       | Task2 | [![Mark](https://img.shields.io/badge/mark-100%25-brightgreen.svg)](/Prac6/Task2/RESULTS.MD)
