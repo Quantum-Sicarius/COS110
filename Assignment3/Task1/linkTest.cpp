@@ -61,6 +61,9 @@ int main() {
   LinkedList<char> list3 = (list1 + *list2);
 
   cout << list3 << endl;
+
+  delete list2;
+
   return 0;
   /////////////////////////////////////////////////////////
 }
