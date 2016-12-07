@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+ */
 #include "circularList.h"
 // Provide the implementation for the CircularList class in this file.
 

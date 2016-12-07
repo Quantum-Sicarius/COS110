@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+*/
 #include "librarian.h"
 #include "library.h"
 #include "book.h"

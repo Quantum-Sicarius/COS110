@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+*/
 #include "librarian.h"
 Book* Librarian::lendBook(string name) {
         if(this->lib.getBook(name)) {

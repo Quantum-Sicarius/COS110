@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+ */
 #include "backwards.h"
 #include <sstream>
 #include <vector>

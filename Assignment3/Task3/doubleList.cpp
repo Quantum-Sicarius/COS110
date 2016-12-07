@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+ */
 // Provide the implementation for the DoubleList class in this file.
 
 template <class T> ostream &operator<<(ostream &os, DoubleList<T> &ll) {

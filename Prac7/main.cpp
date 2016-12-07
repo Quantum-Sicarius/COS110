@@ -1,19 +1,22 @@
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+ */
 #include "Node.h"
 #include <iostream>
 using namespace std;
 
-int main(int argc, char const *argv[])
-{
-	string array[]  = {"A","B","C","D"};
-	Node *one = new Node(4,array);
+int main(int argc, char const *argv[]) {
+  string array[] = {"A", "B", "C", "D"};
+  Node *one = new Node(4, array);
 
-	cout<<"Original List: "<<endl;
-	one->display();
+  cout << "Original List: " << endl;
+  one->display();
 
-	one->reverse();
+  one->reverse();
 
-	cout<<"Reversed List: "<<endl;
-	one->display();
+  cout << "Reversed List: " << endl;
+  one->display();
 
-	return 0;
+  return 0;
 }

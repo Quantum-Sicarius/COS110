@@ -1,4 +1,8 @@
 /*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+*/
+/*
  * main function to test code
  */
 

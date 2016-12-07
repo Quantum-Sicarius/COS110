@@ -1,8 +1,12 @@
-#include <iostream>
+/*
+ * Copyright (c) 2016, Thomas Scholtz
+ * All rights reserved.
+ */
 #include "Adventurer.h"
+#include <iostream>
 
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
+#include <stdlib.h> /* srand, rand */
+#include <time.h>   /* time */
 
 #include <string>
 /*
@@ -13,154 +17,168 @@ using namespace std;
 
 int adventurers = 0;
 
-string items[][2] = {
-{"SWORD", "21.2"},
-{"AXE", "30.1"},
-{"MACE","12.1"},
-{"BROADSWORD", "15"},
-{"DAGGER", "5.1"}
-};
+string items[][2] = {{"SWORD", "21.2"},
+                     {"AXE", "30.1"},
+                     {"MACE", "12.1"},
+                     {"BROADSWORD", "15"},
+                     {"DAGGER", "5.1"}};
 
-string* getRandomItem() {
-        int random_num;
-        // Generate random number between 1 and 5.
-        random_num = rand() % 5;
+string *getRandomItem() {
+  int random_num;
+  // Generate random number between 1 and 5.
+  random_num = rand() % 5;
 
-        //cout << ran
+  // cout << ran
 
-        //cout << "RANDOM: " << random_num << endl;
-        //cout << items[0][0];
-        return items[random_num];
+  // cout << "RANDOM: " << random_num << endl;
+  // cout << items[0][0];
+  return items[random_num];
 }
 
 int randomNumber() {
 
-        // Random.
-        // Initialize random seed.
+  // Random.
+  // Initialize random seed.
 
-        int random_num;
-        // Generate random number between 1 and 100.
-        random_num = rand() % 100 + 1;
+  int random_num;
+  // Generate random number between 1 and 100.
+  random_num = rand() % 100 + 1;
 
-        //cout << "RANDOM: " << random_num << endl;
-        return random_num;
+  // cout << "RANDOM: " << random_num << endl;
+  return random_num;
 }
 
 void testAttributes(Adventurer *ad) {
 
-        adventurers++;
-        //cout << adventurers;
+  adventurers++;
+  // cout << adventurers;
 
-        // Set name.
-        ad->setName (("adventurer" + to_string(adventurers)));
-        cout << "Adventurer name: " << ad->getName() << endl;
+  // Set name.
+  ad->setName(("adventurer" + to_string(adventurers)));
+  cout << "Adventurer name: " << ad->getName() << endl;
 
-        // Set carry weight.
-        ad->setMaxCarryWeight(randomNumber());
-        cout << "Adventurer: " << ad->getName() << "\tmax carry weight: " << ad->getMaxCarryWeight() << endl;
+  // Set carry weight.
+  ad->setMaxCarryWeight(randomNumber());
+  cout << "Adventurer: " << ad->getName()
+       << "\tmax carry weight: " << ad->getMaxCarryWeight() << endl;
 
-        // Set max items;
-        ad->setMaxNumberOfItems(randomNumber());
-        cout << "Adventurer: " << ad->getName() << "\tmax number of items: " << ad->getMaxNumberOfItems() << endl;
+  // Set max items;
+  ad->setMaxNumberOfItems(randomNumber());
+  cout << "Adventurer: " << ad->getName()
+       << "\tmax number of items: " << ad->getMaxNumberOfItems() << endl;
 
-        // Set health;
-        ad->setHealth(randomNumber());
-        cout << "Adventurer: " << ad->getName() << "\thealth: " << ad->getHealth() << endl;
+  // Set health;
+  ad->setHealth(randomNumber());
+  cout << "Adventurer: " << ad->getName() << "\thealth: " << ad->getHealth()
+       << endl;
 
-        // Pick up item.
-        string *item = getRandomItem();
+  // Pick up item.
+  string *item = getRandomItem();
 
-        //cout << item[0] << "\t" << item[1] << endl;
+  // cout << item[0] << "\t" << item[1] << endl;
 
-        cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0] << " of weight: " << item[1]
-             << "\tSuccess? " << ad->pickUpItem(item[0],stod(item[1])) << endl;
+  cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0]
+       << " of weight: " << item[1] << "\tSuccess? "
+       << ad->pickUpItem(item[0], stod(item[1])) << endl;
 
-        // Test items.
-        cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+  // Test items.
+  cout << "Adventurer: " << ad->getName()
+       << " has: " << ad->getCurrentNumberOfItems() << " number of items."
+       << endl;
 
-        if (ad->getCurrentNumberOfItems() > 0) {
-                // Get item.
-                cout << "Adventurer: " << ad->getName() << " has items" << endl;
+  if (ad->getCurrentNumberOfItems() > 0) {
+    // Get item.
+    cout << "Adventurer: " << ad->getName() << " has items" << endl;
 
-                for (size_t i = 0; i < ad->getCurrentNumberOfItems(); i++) {
-                        cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1]  << endl;
-                }
+    for (size_t i = 0; i < ad->getCurrentNumberOfItems(); i++) {
+      cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1] << endl;
+    }
 
-                string *item = getRandomItem();
+    string *item = getRandomItem();
 
-                cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0] << " of weight: " << item[1]
-                     << "\tSuccess? " << ad->pickUpItem(item[0],stod(item[1])) << endl;
+    cout << "Adventurer: " << ad->getName() << " is picking up: " << item[0]
+         << " of weight: " << item[1] << "\tSuccess? "
+         << ad->pickUpItem(item[0], stod(item[1])) << endl;
 
-                // Test items.
-                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+    // Test items.
+    cout << "Adventurer: " << ad->getName()
+         << " has: " << ad->getCurrentNumberOfItems() << " number of items."
+         << endl;
 
-                cout << "Drop Item: " << ad->dropItem(0) << endl;
-                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
+    cout << "Drop Item: " << ad->dropItem(0) << endl;
+    cout << "Adventurer: " << ad->getName()
+         << " has: " << ad->getCurrentNumberOfItems() << " number of items."
+         << endl;
 
-                //cout << "Drop item: " << item[0] << ad->dropItem(item[0]) << endl;
+    // cout << "Drop item: " << item[0] << ad->dropItem(item[0]) << endl;
 
-                cout << "Adventurer: " << ad->getName() << " has: " << ad->getCurrentNumberOfItems() << " number of items." << endl;
-
-        }
-
+    cout << "Adventurer: " << ad->getName()
+         << " has: " << ad->getCurrentNumberOfItems() << " number of items."
+         << endl;
+  }
 }
 
 void printAttributes(Adventurer *ad) {
 
-        cout << "Adventurer name: " << ad->getName() << endl;
+  cout << "Adventurer name: " << ad->getName() << endl;
 
-        cout << "Adventurer: " << ad->getName() << "\tmax carry weight: " << ad->getMaxCarryWeight() << endl;
+  cout << "Adventurer: " << ad->getName()
+       << "\tmax carry weight: " << ad->getMaxCarryWeight() << endl;
 
-        cout << "Adventurer: " << ad->getName() << "\tmax number of items: " << ad->getMaxNumberOfItems() << endl;
+  cout << "Adventurer: " << ad->getName()
+       << "\tmax number of items: " << ad->getMaxNumberOfItems() << endl;
 
-        cout << "Adventurer: " << ad->getName() << "\thealth: " << ad->getHealth() << endl;
+  cout << "Adventurer: " << ad->getName() << "\thealth: " << ad->getHealth()
+       << endl;
 
-        cout << "There are currently: " << ad->getNumberOfAdventurers() << " adventurers." << endl;
+  cout << "There are currently: " << ad->getNumberOfAdventurers()
+       << " adventurers." << endl;
 }
 
 void printItems(Adventurer *ad) {
-        if (ad->getCurrentNumberOfItems() > 0) {
-                cout << "Adventurer: " << ad->getName() << " has " << ad->getCurrentNumberOfItems() << " items: " << endl;
+  if (ad->getCurrentNumberOfItems() > 0) {
+    cout << "Adventurer: " << ad->getName() << " has "
+         << ad->getCurrentNumberOfItems() << " items: " << endl;
 
-                for (int i = 0; i < ad->getCurrentNumberOfItems(); i++) {
-                        cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1]  << endl;
-                }
-        }
+    for (int i = 0; i < ad->getCurrentNumberOfItems(); i++) {
+      cout << *(ad->getItem(i))[0] << "\t" << *(ad->getItem(i))[1] << endl;
+    }
+  }
 }
 
 int Adventurer::numberOfAdventurers = 0;
 
 int main() {
-        //add code here to test your class
-        cout << "Start..." << endl;
+  // add code here to test your class
+  cout << "Start..." << endl;
 
-        srand (time(NULL));
+  srand(time(NULL));
 
-        // Create new Adventurer.
-        Adventurer *ad1 = new Adventurer();
-        testAttributes(ad1);
+  // Create new Adventurer.
+  Adventurer *ad1 = new Adventurer();
+  testAttributes(ad1);
 
-        Adventurer *ad2 = new Adventurer();
-        testAttributes(ad2);
+  Adventurer *ad2 = new Adventurer();
+  testAttributes(ad2);
 
-        // Test copy
+  // Test copy
 
-        cout << "Testing copy constructor" << endl;
+  cout << "Testing copy constructor" << endl;
 
-        Adventurer *ad3 = new Adventurer(*ad2);
-        printAttributes(ad3);
-        printItems(ad3);
+  Adventurer *ad3 = new Adventurer(*ad2);
+  printAttributes(ad3);
+  printItems(ad3);
 
-        Adventurer *ad4 = ad3;
-        printAttributes(ad4);
-        printItems(ad4);
+  Adventurer *ad4 = ad3;
+  printAttributes(ad4);
+  printItems(ad4);
 
-        cout << "Deleting AD2" << endl;
-        delete ad2;
+  cout << "Deleting AD2" << endl;
+  delete ad2;
 
-        cout << "Testing AD3" << endl;
-        printAttributes(ad3);
-        printItems(ad3);
+  cout << "Testing AD3" << endl;
+  printAttributes(ad3);
+  printItems(ad3);
 
-        return 0;
+  return 0;
 }
