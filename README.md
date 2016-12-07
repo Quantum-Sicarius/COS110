@@ -1,10 +1,15 @@
 # COS110
 
-[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/) [![Licence](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/) 
 
-This is a repository for the `COS 110` module pracitacls. You are welcome to use this as a reference for your own pracitacls. Be aware however if you copy the code you will be plagirising my work.
+# Licence
+[![Licence](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-All code is licenced under the `MIT Licence`. All task specifications are owned by the [University of Pretoria](http://www.up.ac.za/).
+**ALL CODE IS STRICTLY LICENCED UNDER THE [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) LICENCE.**
+
+All task specifications are owned by the [University of Pretoria](http://www.up.ac.za/).
+
+This is a repository for the `COS 110` module pracitacls. You are welcome to use this as a reference and learning for your own pracitacls. Be aware however if you copy the code you will be plagirising my work. This has happened and I got zero for all my assignements.
 
 # Status
 
