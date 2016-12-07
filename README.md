@@ -1,6 +1,6 @@
 # COS110
 
-[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/) [![Licence](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)](https://opensource.org/licenses/MIT)
+[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/) [![Licence](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 This is a repository for the `COS 110` module pracitacls. You are welcome to use this as a reference for your own pracitacls. Be aware however if you copy the code you will be plagirising my work.
 
